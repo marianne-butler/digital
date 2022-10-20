@@ -116,6 +116,11 @@ body {
   font-variation-settings: "wght" 400;
   background: var(--background-alt);
 }
+@media (prefers-color-scheme: dark) {
+  body {
+    background: black;
+  }
+}
 body * {
   margin: 0;
   padding: 0;
