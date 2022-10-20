@@ -994,7 +994,7 @@ main section article[data-activity-type=core] > h4, main section article[data-ac
   left: 0;
   z-index: 3;
   margin-top: 0.01rem;
-  grid-template-columns: 4.3rem 2rem max-content;
+  grid-template-columns: 4.3rem 2rem 1fr;
 }
 main section article[data-activity-type=core] > h4 span, main section article[data-activity-type=branch] > h4 span, main section article[data-activity-type=contract] > h4 span {
   grid-row-start: 1;
@@ -1130,7 +1130,7 @@ main section article[data-activity-id=ll] footer span:nth-child(3) line {
 }
 main section article[data-activity-type=projects] {
   display: grid;
-  grid-template-columns: 6.3rem 2rem 1fr;
+  grid-template-columns: 2rem 4rem 1fr;
   grid-template-rows: 100%;
   align-items: center;
   margin-left: -1rem;
@@ -1142,13 +1142,14 @@ main section article[data-activity-type=projects] h4, main section article[data-
   font-variation-settings: "wght" 250;
   display: grid;
   align-items: center;
-  grid-template-columns: 6.2rem 5rem 1fr;
+  grid-template-columns: 2rem 4rem 1fr;
 }
 main section article[data-activity-type=projects] h4 span, main section article[data-activity-type=projects] h5 span {
   grid-row-start: 1;
 }
 main section article[data-activity-type=projects] h4 span:first-child, main section article[data-activity-type=projects] h5 span:first-child {
   grid-column-start: 3;
+  white-space: unset;
 }
 main section article[data-activity-type=projects] h4 span:last-child, main section article[data-activity-type=projects] h5 span:last-child {
   grid-column-start: 2;
@@ -1167,6 +1168,14 @@ main section article[data-activity-type=projects] h4 span:last-child svg path, m
 }
 main section article[data-activity-type=projects] h4 span:last-child svg line, main section article[data-activity-type=projects] h5 span:last-child svg line {
   transform: scale(2);
+}
+@media (min-width: 900px) {
+  main section article[data-activity-type=projects] {
+    grid-template-columns: 6.2rem 5rem 1fr;
+  }
+  main section article[data-activity-type=projects] h4, main section article[data-activity-type=projects] h5 {
+    grid-template-columns: 6.2rem 5rem 1fr;
+  }
 }
 main section article[data-activity-type=projects] h4 {
   margin-bottom: 0.5rem;
