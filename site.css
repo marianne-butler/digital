@@ -1,4 +1,1167 @@
-body {
-  background: #333;
-  color: #fff;
+@charset "UTF-8";
+:root {
+  --content: #000;
+  --lighter: #ccc;
+  --light: #aaa;
+  --background: #fff;
+  --background-alt: #E6E6FA;
+  --accent: turquoise;
+  --accent2: magenta;
 }
+
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("josefinSans-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 1 999;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("BodoniModa-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 400 999;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Fira Mono";
+  src: url("FiraMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+a {
+  text-decoration: none;
+  position: relative;
+  display: block;
+  transition: font-variation-settings 0.15s;
+}
+a:link, a:visited, a:hover, a:active {
+  color: var(--content);
+}
+a span {
+  position: relative;
+  z-index: 1;
+  padding: 0 0.3rem;
+}
+a:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 0.6rem;
+  background: turquoise;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+a:hover {
+  font-variation-settings: "wght" 350;
+}
+a:hover:before {
+  opacity: 1;
+}
+footer a:before {
+  height: 0.3rem;
+}
+
+html {
+  background: var(--background-alt);
+}
+
+body {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-size: 100%;
+  font-family: "Josefin Sans";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  font-variation-settings: "wght" 400;
+  background: var(--background-alt);
+}
+@media (min-height: 48rem) {
+  body {
+    font-size: 120%;
+  }
+}
+body * {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  border: none;
+  background: none;
+  outline: none;
+  list-style-type: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+header {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  z-index: 1000;
+  font-size: 2rem;
+  font-variation-settings: "wght" 200;
+  padding: 0 5vw;
+  min-height: 3rem;
+  max-height: 3rem;
+  transition: all 0.45s ease-out;
+}
+[data-state=splash] header {
+  max-height: 12rem;
+  height: 12rem;
+  padding: 23vh 20vw 0;
+  background: var(--background-alt);
+}
+header h1, header p {
+  display: grid;
+  font-size: 1.36rem;
+  grid-template-rows: repeat(2, max-content);
+}
+header h1 {
+  grid-template-columns: 21rem;
+  transform: scale(1);
+  transition: transform 0.45s 0.45s;
+}
+[data-state=scroll] header h1 {
+  transform: scale(0);
+}
+header h1 > *:first-child {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  font-size: 1.8rem;
+  font-variation-settings: "wght" 350;
+  transform: translate(-2vw, -2vw);
+}
+header h1 > *:last-child {
+  grid-column-start: 1;
+  grid-row-start: 2;
+  display: grid;
+  align-items: center;
+  grid-row-gap: 1rem;
+  grid-template-columns: 8.4rem 1fr 1rem;
+  grid-template-rows: max-content max-content;
+  position: relative;
+}
+header h1 > *:last-child > span {
+  position: relative;
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+header h1 > *:last-child > span.punctuation {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  text-align: right;
+  font-size: 900%;
+  font-variation-settings: "wght" 500;
+  position: absolute;
+  bottom: -1.7rem;
+  color: var(--background);
+  right: -0.5rem;
+  z-index: 0;
+}
+header h1 > *:last-child > strong {
+  z-index: 10;
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+  justify-self: flex-start;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 1.6rem;
+  letter-spacing: -0.05rem;
+  text-shadow: 0 0 0 var(--background) 0 0 0 var(--content);
+  color: var(--content);
+  transition: all 0.2s;
+}
+[data-state=splash] header h1 > *:last-child > strong {
+  letter-spacing: -0.2rem;
+  font-size: 4rem;
+  justify-self: center;
+  text-shadow: -0.2rem 0.2rem 0 var(--background);
+}
+[data-state=splash] header h1 > *:last-child span {
+  opacity: 1;
+}
+header p {
+  margin-top: 0.2rem;
+  grid-row-gap: 0.6rem;
+  grid-template-columns: 21rem;
+  position: relative;
+  transform: opacity 0.2s;
+}
+header p:before, header p:after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background: var(--content);
+}
+header p:before {
+  left: -20vw;
+  top: 1rem;
+  width: 0;
+  transition: width 0.45s;
+}
+[data-state=splash] header p:before {
+  width: 19vw;
+}
+header p:after {
+  left: 100vw;
+  bottom: -0.1rem;
+  width: 100vw;
+  transition: left 0.45s;
+}
+[data-state=splash] header p:after {
+  left: calc(100% - 2.6rem);
+}
+header p > span {
+  grid-column-start: 1;
+  transform: translateX(0);
+  transition: transform 0.45s;
+}
+[data-state=scroll] header p > span {
+  transform: translateX(-100vw);
+}
+[data-state=splash] header p > span:first-child {
+  grid-row-start: 1;
+  transform: translateX(0.1rem);
+}
+[data-state=splash] header p > span:first-child strong {
+  font-variation-settings: "wght" 380;
+}
+[data-state=splash] header p > span:first-child strong:first-child {
+  font-variation-settings: "wght" 300;
+}
+[data-state=splash] header p > span:first-child .punctuation {
+  margin-right: -0.1rem;
+  opacity: 0.8;
+}
+[data-state=splash] header p > span.punctuation {
+  grid-row-start: 2;
+  text-align: right;
+  transform: translate(-0.7rem, -4.2rem);
+  font-size: 900%;
+  height: 1rem;
+  color: var(--background);
+}
+header p > time {
+  grid-column-start: 1;
+  grid-row-start: 2;
+  text-align: right;
+  margin-right: 1rem;
+  letter-spacing: 0.05rem;
+  position: relative;
+  z-index: 10;
+  transform: translateX(0);
+  transition: transform 0.45s;
+}
+[data-state=scroll] header p > time {
+  transform: translateX(100vw);
+}
+header .punctuation {
+  font-family: "Bodoni Moda";
+}
+
+menu {
+  display: grid;
+  position: fixed;
+  grid-template-rows: 3.3rem max-content max-content;
+  grid-template-columns: max-content 1fr;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition: all 0.45s;
+}
+[data-state=splash] menu {
+  top: 23vh;
+  padding-top: 12rem;
+  left: 20vw;
+  right: 20vw;
+}
+[data-state=scroll] menu:before {
+  content: "";
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: span 3;
+  background: var(--background-alt);
+}
+[data-state=scroll] menu:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  background: var(--background-alt);
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+[data-state=scroll] menu > * {
+  position: relative;
+  z-index: 1;
+}
+[data-focus="0"] menu:after {
+  opacity: 0;
+}
+menu button {
+  font-size: 1rem;
+  grid-row-start: 2;
+  position: relative;
+  pointer-events: all;
+  user-select: none;
+  cursor: pointer;
+}
+menu button[data-action=splash] {
+  pointer-events: none;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  justify-self: flex-start;
+  opacity: 0;
+  transition: opacity 0.45s;
+  margin: 0 1rem 0 2rem;
+  position: relative;
+}
+[data-state=scroll] menu button[data-action=splash] {
+  opacity: 1;
+  pointer-events: all;
+}
+menu button[data-action=splash] span {
+  position: relative;
+  z-index: 1;
+}
+menu button[data-action=splash] span.punctuation {
+  position: absolute;
+  font-size: 600%;
+  color: var(--background);
+  right: -1rem;
+  bottom: -2.6rem;
+  z-index: 0;
+  transition: all 0.15s;
+  pointer-events: none;
+}
+menu button[data-action=splash]:hover, menu button[data-action=splash]:focus {
+  font-variation-settings: "wght" 350;
+}
+menu button[data-action=splash]:hover span.punctuation, menu button[data-action=splash]:focus span.punctuation {
+  bottom: -3rem;
+}
+menu button[data-action=contact] {
+  padding: 0 0 0 1rem;
+  background: var(--background-alt);
+  grid-column-start: 2;
+  grid-row-start: 1;
+  transition: padding 0.15s;
+  justify-self: flex-end;
+}
+menu button[data-action=contact]:before {
+  content: "";
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 0.1rem;
+  border-left: 0.3rem solid var(--background-alt);
+  border-bottom: 0.3rem solid var(--accent);
+  padding: 0 0.6rem 0.6rem 0;
+  z-index: 0;
+  transition: opacity 0.15s;
+}
+menu button[data-action=contact] span {
+  position: relative;
+  z-index: 1;
+  font-variation-settings: "wght" 350;
+  transition: font-variation-settings 0.15s;
+}
+menu button[data-action=contact]:hover:before, menu button[data-action=contact]:focus:before {
+  opacity: 1;
+}
+menu button[data-action=contact]:hover span, menu button[data-action=contact]:focus span {
+  font-variation-settings: "wght" 600;
+}
+[data-state=scroll] menu button[data-action=contact] {
+  margin-right: 2rem;
+}
+[data-state=splash] menu button[data-action=contact] {
+  padding: 0 1rem 0 2rem;
+  transform: translateY(-50%);
+  border-right: 0.3rem solid var(--background-alt);
+}
+[data-state=splash] menu button[data-action=contact]:before {
+  border-top: 0.3rem solid var(--background-alt);
+  border-left: 0.3rem solid var(--background-alt);
+  border-right: 0.3rem solid var(--accent);
+  border-bottom: 0.3rem solid var(--accent);
+}
+menu button[data-action=scroll] {
+  grid-row-start: 3;
+  grid-column-start: 2;
+  justify-self: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 1rem;
+  align-items: center;
+  grid-column-gap: 0.3rem;
+  grid-template-rows: 2.4rem;
+  position: relative;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s 0.9s;
+}
+menu button[data-action=scroll] span {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  transition: font-variation-settings 0.15s;
+}
+menu button[data-action=scroll]:before, menu button[data-action=scroll]:after {
+  font-family: "Bodoni Moda";
+  content: "»";
+  font-size: 120%;
+  transform: rotate(90deg) translate(0.2rem, -1rem);
+  transform-origin: top left;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  overflow: visible;
+  justify-self: flex-start;
+  text-align: left;
+  transition: all 0.15s;
+}
+menu button[data-action=scroll]:after {
+  transform: rotate(90deg) translate(1.2rem, -1rem);
+}
+menu button[data-action=scroll]:hover:before, menu button[data-action=scroll]:hover:after, menu button[data-action=scroll]:active:before, menu button[data-action=scroll]:active:after {
+  font-variation-settings: "wght" 750;
+}
+menu button[data-action=scroll]:hover:after, menu button[data-action=scroll]:active:after {
+  transform: rotate(90deg) translate(2.2rem, -1rem);
+}
+[data-state=splash] menu button[data-action=scroll] {
+  opacity: 1;
+  pointer-events: all;
+}
+menu details {
+  font-size: 1rem;
+  justify-self: flex-end;
+  grid-column-start: 2;
+  grid-row-start: 2;
+  background: transparent;
+  border-bottom: 0.1rem solid transparent;
+  transition: all 0.3s;
+}
+menu details summary {
+  pointer-events: all;
+  user-select: none;
+  cursor: pointer;
+  display: grid;
+  align-items: center;
+  grid-template-rows: 2.4rem;
+  grid-template-columns: 1rem 1fr;
+  position: relative;
+}
+menu details summary h2 {
+  grid-column-start: 2;
+  transition: font-variation-settings 0.15s;
+}
+menu details summary h2 strong {
+  font-variation-settings: "wght" 350;
+  transition: font-variation-settings 0.15s;
+}
+menu details summary h3 {
+  grid-column-start: 2;
+}
+menu details summary h3 strong {
+  font-variation-settings: "wght" inherit;
+  transition: font-variation-settings 0.15s;
+}
+menu details summary:before {
+  font-family: "Bodoni Moda";
+  content: "›";
+  font-size: 120%;
+  transform: rotate(0);
+  transition: all 0.15s;
+}
+menu details summary:hover:before, menu details summary:focus:before {
+  font-variation-settings: "wght" 900;
+}
+menu details summary:hover h2 > strong, menu details summary:focus h2 > strong {
+  font-variation-settings: "wght" 600;
+}
+menu details summary:hover h3 > strong, menu details summary:focus h3 > strong {
+  font-variation-settings: "wght" 350;
+}
+menu details ul {
+  height: 10rem;
+}
+menu details[open] {
+  grid-column-end: span 2;
+  justify-self: stretch !important;
+  border-bottom-color: var(--content);
+}
+menu details[open] summary:before {
+  transform: rotate(90deg) translate(0.2rem, 0.2rem);
+}
+[data-state=scroll] menu details {
+  margin: 0 1rem 0 2rem;
+  justify-self: flex-start;
+  grid-column-start: 1;
+}
+menu details:not(.show-content) {
+  opacity: 1;
+  grid-row-start: 3;
+  transition: opacity 0.45s;
+}
+[data-state=splash] menu details:not(.show-content) {
+  opacity: 0;
+}
+[data-state=splash] menu details:not(.show-content) summary {
+  pointer-events: none;
+}
+[data-state=scroll] menu details.show-content summary h2 {
+  display: none;
+}
+[data-state=splash] menu details.show-content {
+  margin-top: 4rem;
+}
+[data-state=splash] menu details.show-content summary h3 {
+  display: none;
+}
+
+main {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 16rem max-content;
+}
+[data-state=splash] main {
+  margin-top: 12rem;
+  padding-top: 23vh;
+}
+main #top {
+  grid-row-start: 1;
+  pointer-events: none;
+}
+main h2 {
+  position: sticky;
+  top: 1em;
+  z-index: 10;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  margin: 18rem 20vw 0 0;
+  display: grid;
+  text-align: right;
+  align-items: center;
+  transform: scale(1);
+  transition: transform 0.45s;
+}
+main h2 span {
+  position: relative;
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+main h2 span:first-child {
+  z-index: 1;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-variation-settings: "wght" 300;
+}
+main h2 span:last-child {
+  z-index: 0;
+  font-size: 4rem;
+  bottom: 1rem;
+  font-family: "Bodoni Moda";
+  font-variation-settings: "wght" 600;
+  color: var(--background);
+}
+[data-state=scroll] main h2 {
+  transform: scale(0.5);
+  background: var(--background-alt);
+}
+main #cv {
+  grid-row-start: 2;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content;
+  z-index: 0;
+}
+main ol {
+  pointer-events: none;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: grid;
+  grid-template-rows: repeat(attr("data-years"), 1fr);
+  align-items: stretch;
+}
+main ol li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 80vh;
+  min-height: 36rem;
+  max-height: 48rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: max-content 1fr;
+  grid-template-columns: 100%;
+  font-family: "Fira Mono";
+  font-weight: normal;
+  font-size: 0.68rem;
+}
+main ol li:after {
+  content: attr(data-year);
+  grid-row-start: 2;
+  grid-column-start: 1;
+  align-self: flex-start;
+  justify-self: flex-end;
+  background: var(--background-alt);
+  padding: 0.3rem;
+  color: #999;
+  transform: translate(-5vw, -0.86rem);
+}
+main ol li:before {
+  content: "";
+  background: var(--content);
+  grid-row-start: 1;
+  grid-column-start: 1;
+  height: 0.5px;
+}
+[data-state=splash] main ol li:first-child {
+  position: sticky;
+  top: 16rem;
+  z-index: 100;
+}
+[data-state=splash] main ol li:first-child:before {
+  display: none;
+}
+[data-state=splash] main ol li:first-child:after {
+  transform: translate(-20vw, -13.7rem);
+  font-family: "Josefin Sans";
+  color: var(--content);
+  font-variation-settings: "wght" 350;
+  letter-spacing: 0.05rem;
+}
+main ol:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-family: "Bodoni Moda";
+  content: "~";
+  text-align: center;
+  font-size: 500%;
+  font-variation-settings: "wght" 500;
+  color: var(--background);
+}
+main section {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  width: 100%;
+  max-width: 84vh;
+  margin: 0 auto;
+  display: grid;
+}
+main section svg {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  width: 100%;
+  height: auto;
+}
+main section article {
+  position: absolute;
+  right: 10%;
+  left: 40%;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  align-self: flex-start;
+  margin-left: 1rem;
+}
+main section article:after {
+  content: "";
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+main section article > h4 {
+  font-variation-settings: "wght" 250;
+}
+main section article > h4 span:last-child svg {
+  width: 2rem;
+  height: 3.236rem;
+  overflow: visible;
+}
+main section article > h4 span:last-child svg path, main section article > h4 span:last-child svg line {
+  stroke: var(--content);
+  stroke-width: 0.2rem;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+main section article > h5 {
+  font-variation-settings: "wght" 300;
+}
+main section article > h5:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0.5rem;
+  background: var(--content);
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+main section article > h5 span:first-child {
+  white-space: nowrap;
+}
+main section article > h5 span:last-child svg {
+  width: 1.1rem;
+  height: 1.7798rem;
+  overflow: visible;
+}
+main section article > h5 span:last-child svg path, main section article > h5 span:last-child svg line {
+  stroke: var(--content);
+  stroke-width: 0.2rem;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+main section article ul li {
+  font-size: 0.8rem;
+  font-variation-settings: "wght" 300;
+  position: absolute;
+  top: 0;
+  left: 2rem;
+}
+main section article footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+main section article footer small {
+  font-size: 0.8rem;
+  font-variation-settings: "wght" 300;
+  margin-left: 3rem;
+}
+main section article footer small strong:before {
+  content: "began working for ";
+}
+main section article footer > span:nth-child(2), main section article footer > span:nth-child(3) {
+  position: absolute;
+  z-index: 5;
+}
+main section article footer > span:nth-child(2):before, main section article footer > span:nth-child(3):before {
+  position: absolute;
+  bottom: 0.3rem;
+  left: 0;
+  z-index: 0;
+  content: "";
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+main section article footer > span:nth-child(2) svg, main section article footer > span:nth-child(3) svg {
+  position: relative;
+  z-index: 1;
+  width: 0.8rem;
+  height: 1.2944rem;
+  overflow: visible;
+}
+main section article footer > span:nth-child(2) svg path, main section article footer > span:nth-child(2) svg line, main section article footer > span:nth-child(3) svg path, main section article footer > span:nth-child(3) svg line {
+  stroke: var(--content);
+  stroke-width: 0.15rem;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+main section article footer > span:nth-child(2) {
+  left: 0em;
+  bottom: 0.3rem;
+  transform: rotate(90deg);
+}
+main section article footer > span:nth-child(2):before {
+  left: -0.03rem;
+}
+main section article footer > span:nth-child(3) {
+  left: 0.2rem;
+  bottom: -0.6rem;
+  transform: rotate(-90deg);
+}
+main section article footer > span:nth-child(3):before {
+  left: -0.05rem;
+}
+main section article footer > span:nth-child(3) svg line {
+  transform: scale(5);
+}
+main section article[data-activity-type=core]:after, main section article[data-activity-type=branch]:after, main section article[data-activity-type=contract]:after {
+  width: 4.3rem;
+  height: 4.3rem;
+  left: 2.1rem;
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  z-index: 0;
+}
+main section article[data-activity-type=core]:before, main section article[data-activity-type=branch]:before, main section article[data-activity-type=contract]:before {
+  content: "";
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--accent);
+  position: absolute;
+  bottom: 0;
+  left: 0.3rem;
+  z-index: 0;
+}
+main section article[data-activity-type=core] > h5, main section article[data-activity-type=branch] > h5, main section article[data-activity-type=contract] > h5 {
+  font-size: 0.8rem;
+  font-variation-settings: "wght" 300;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0.7rem;
+  z-index: 2;
+  padding: 1.3rem 0.96rem;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  color: var(--background);
+  display: flex;
+}
+main section article[data-activity-type=core] > h5:before, main section article[data-activity-type=branch] > h5:before, main section article[data-activity-type=contract] > h5:before {
+  width: 1.3rem;
+}
+main section article[data-activity-type=core] > h5 span:first-child, main section article[data-activity-type=branch] > h5 span:first-child, main section article[data-activity-type=contract] > h5 span:first-child {
+  transform-origin: top left;
+  transform: rotate(90deg);
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+main section article[data-activity-type=core] > h5 span:last-child, main section article[data-activity-type=branch] > h5 span:last-child, main section article[data-activity-type=contract] > h5 span:last-child {
+  transform-origin: top left;
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 4.5rem;
+  left: 1.1rem;
+}
+main section article[data-activity-type=core] > h4, main section article[data-activity-type=branch] > h4, main section article[data-activity-type=contract] > h4 {
+  display: grid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  margin-top: 0.01rem;
+  grid-template-columns: 4.3rem 2rem max-content;
+}
+main section article[data-activity-type=core] > h4 span, main section article[data-activity-type=branch] > h4 span, main section article[data-activity-type=contract] > h4 span {
+  grid-row-start: 1;
+}
+main section article[data-activity-type=core] > h4 span:first-child, main section article[data-activity-type=branch] > h4 span:first-child, main section article[data-activity-type=contract] > h4 span:first-child {
+  grid-column-start: 3;
+  margin: 1rem 0.6rem;
+}
+main section article[data-activity-type=core] > h4 span:last-child, main section article[data-activity-type=branch] > h4 span:last-child, main section article[data-activity-type=contract] > h4 span:last-child {
+  padding-top: 0.1rem;
+  grid-column-start: 2;
+}
+main section article[data-activity-id=self] {
+  margin-left: 0;
+}
+main section article[data-activity-id=self]:before {
+  top: 4rem;
+  left: -0.5;
+  transform: scale(1.5);
+}
+main section article[data-activity-id=self]:after {
+  top: -2.2rem;
+  left: -2.6rem;
+  opacity: 0.6;
+  transform: scale(1.5);
+}
+main section article[data-activity-id=self] > h4 span:first-child {
+  display: none;
+}
+main section article[data-activity-id=self] > h4 span:last-child {
+  transform: rotate(-90deg);
+  grid-column-start: 1;
+}
+main section article[data-activity-id=self] > h4 span:last-child svg {
+  transform: translate(1rem, 0.8rem);
+}
+main section article[data-activity-id=self] > h5:before {
+  width: 0.5rem;
+  background: linear-gradient(var(--content) 0%, var(--content) 1%, var(--light) 2%, var(--light) 9.5%, var(--content) 10.5%, var(--content) 11.5%, var(--light) 12.5%, var(--light) 31%, var(--content) 32%, var(--content) 81.5%, var(--light) 82.5%, var(--light) 97%, var(--content) 98%);
+}
+main section article[data-activity-id=self] > h5 span:first-child {
+  display: none;
+}
+main section article[data-activity-id=self] > h5 span:last-child {
+  top: 0;
+  left: 0;
+}
+main section article[data-activity-id=self] > h5 span:last-child svg {
+  transform: scaleY(-1) translate(0, 2.4rem);
+}
+main section article[data-activity-id=self] ul li:first-child {
+  left: -40%;
+  margin-left: 3rem;
+}
+main section article[data-activity-id=self] > footer {
+  bottom: auto;
+  top: 0;
+}
+main section article[data-activity-id=self] > footer:before {
+  display: none;
+}
+main section article[data-activity-id=self] > footer > span {
+  bottom: auto;
+  top: 8rem;
+}
+main section article[data-activity-id=self] > footer > span:last-child {
+  top: 9rem;
+  left: -0.2rem;
+  transform: rotate(90deg) scaleY(-1);
+}
+main section article[data-activity-id=self] > footer > span svg path, main section article[data-activity-id=self] > footer > span svg line {
+  stroke-width: 0.2rem;
+}
+main section article[data-activity-id=self] > footer > span svg line {
+  transform: scale(7);
+}
+main section article[data-activity-id=self] > footer small {
+  display: none;
+}
+main section article[data-activity-type=contract], main section article[data-activity-type=projects] {
+  margin-left: 0.3rem;
+}
+main section article[data-activity-type=contract] footer strong:before, main section article[data-activity-type=projects] footer strong:before {
+  content: "began contracting for ";
+}
+main section article[data-activity-id=lcc] footer strong:before, main section article[data-activity-id=sny] footer strong:before, main section article[data-activity-id=unm] footer strong:before, main section article[data-activity-id=unn] footer strong:before, main section article[data-activity-id=nc] footer strong:before {
+  content: "began studying at ";
+}
+main section article[data-activity-id=al] footer small, main section article[data-activity-id=gs] footer small {
+  display: none;
+}
+main section article[data-activity-id=lcc], main section article[data-activity-id=sscy] {
+  margin-left: -1.7rem;
+  right: 60%;
+}
+main section article[data-activity-id=lcc]:before, main section article[data-activity-id=sscy]:before {
+  display: none;
+}
+main section article[data-activity-id=lcc]:after, main section article[data-activity-id=sscy]:after {
+  right: 2.6rem;
+  left: auto;
+}
+main section article[data-activity-id=lcc] h4, main section article[data-activity-id=sscy] h4 {
+  right: 0.4rem;
+  left: auto;
+  grid-template-columns: max-content 2rem 4.3rem;
+}
+main section article[data-activity-id=lcc] h4 span:first-child, main section article[data-activity-id=sscy] h4 span:first-child {
+  grid-column-start: 1;
+}
+main section article[data-activity-id=lcc] h4 span:last-child, main section article[data-activity-id=sscy] h4 span:last-child {
+  transform: scaleX(-1);
+}
+main section article[data-activity-id=lcc] h5 span:last-child, main section article[data-activity-id=sscy] h5 span:last-child {
+  left: 0.1rem;
+  transform: rotate(90deg) scaleX(-1);
+}
+main section article[data-activity-id=lcc] footer > span, main section article[data-activity-id=sscy] footer > span {
+  left: 0.5rem;
+  transform: rotate(90deg) scaleY(-1);
+}
+main section article[data-activity-id=lcc] footer small, main section article[data-activity-id=sscy] footer small {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  white-space: nowrap;
+}
+main section article[data-activity-id=ll] footer span:nth-child(3) {
+  transform: scaleY(-1);
+}
+main section article[data-activity-id=ll] footer span:nth-child(3) line {
+  transform: scale(2);
+}
+main section article[data-activity-type=projects] {
+  display: grid;
+  grid-template-columns: 6.3rem 2rem 1fr;
+  grid-template-rows: 100%;
+  align-items: center;
+  margin-left: -1rem;
+}
+main section article[data-activity-type=projects] h4, main section article[data-activity-type=projects] h5 {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  font-variation-settings: "wght" 250;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 6.2rem 5rem 1fr;
+}
+main section article[data-activity-type=projects] h4 span, main section article[data-activity-type=projects] h5 span {
+  grid-row-start: 1;
+}
+main section article[data-activity-type=projects] h4 span:first-child, main section article[data-activity-type=projects] h5 span:first-child {
+  grid-column-start: 3;
+}
+main section article[data-activity-type=projects] h4 span:last-child, main section article[data-activity-type=projects] h5 span:last-child {
+  grid-column-start: 2;
+}
+main section article[data-activity-type=projects] h4 span:last-child svg, main section article[data-activity-type=projects] h5 span:last-child svg {
+  width: 1.6rem;
+  height: 2.5888rem;
+  overflow: visible;
+  transform: translateY(1.43rem);
+}
+main section article[data-activity-type=projects] h4 span:last-child svg path, main section article[data-activity-type=projects] h4 span:last-child svg line, main section article[data-activity-type=projects] h5 span:last-child svg path, main section article[data-activity-type=projects] h5 span:last-child svg line {
+  stroke: var(--content);
+  stroke-width: 0.15rem;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+main section article[data-activity-type=projects] h4 span:last-child svg line, main section article[data-activity-type=projects] h5 span:last-child svg line {
+  transform: scale(2);
+}
+main section article[data-activity-type=projects] h4 {
+  margin-bottom: 0.5rem;
+}
+main section article[data-activity-type=projects] h4 span:first-child {
+  margin-bottom: 0.9rem;
+}
+main section article[data-activity-type=projects] h4 span:last-child {
+  transform: scaleY(-1);
+}
+main section article[data-activity-type=projects] h5 {
+  margin-top: 0.5rem;
+}
+main section article[data-activity-type=projects] h5:before {
+  display: none;
+}
+main section article[data-activity-type=projects] h5 span:first-child {
+  margin-top: 0.7rem;
+}
+main section article[data-activity-type=projects]:after {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+main section article[data-activity-type=projects] footer span:nth-child(2) {
+  bottom: 0.2rem;
+  left: 1.3rem;
+  transform: none;
+}
+main section article[data-activity-type=projects] footer span:nth-child(2):before {
+  bottom: 0.8rem;
+}
+main section article[data-activity-type=projects] footer span:nth-child(2) svg {
+  transform: scaleY(-1);
+}
+main section article[data-activity-type=projects] footer span:nth-child(2) svg line {
+  display: none;
+}
+main section article[data-activity-type=projects] footer span:nth-child(3) {
+  left: 1.5rem;
+}
+main section article[data-activity-type=projects][data-activity-id=cld] footer span {
+  transform: rotate(-90deg);
+}
+main section article[data-activity-type=projects][data-activity-id=cld] footer span:nth-child(2) {
+  bottom: 0.3rem;
+  left: 0.3rem;
+}
+main section article[data-activity-type=projects][data-activity-id=cld] footer span:nth-child(3) {
+  bottom: 1rem;
+  left: 0.7rem;
+}
+main section article[data-activity-type=projects][data-activity-id=cld] footer span:nth-child(3):before {
+  left: 0.2rem;
+  bottom: 0.5rem;
+}
+main section article[data-activity-type=projects][data-activity-id=cld] footer span:nth-child(3) svg {
+  transform: rotate(-90deg);
+}
+main section article[data-activity-type=projects][data-activity-id=cld] footer span:nth-child(3) svg line {
+  display: none;
+}
+main section article[data-activity-type=projects][data-activity-id=cld] footer small {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  white-space: nowrap;
+}
+main section article[data-activity-type=root]:after {
+  position: absolute;
+  top: -1rem;
+  left: -0.3rem;
+  z-index: 0;
+}
+main section article[data-activity-type=root] h5 span:first-child {
+  margin-left: 5rem;
+}
+main section article[data-activity-type=root] h5 span:first-child strong {
+  display: none;
+}
+main section article[data-activity-type=root] h5 span:last-child {
+  position: absolute;
+  left: -1.5rem;
+  top: 5rem;
+  transform: rotate(90deg);
+}
+main section article[data-activity-type=root] h4 {
+  position: relative;
+  z-index: 5;
+}
+main section article[data-activity-type=root] h4 span:first-child {
+  margin-left: 5rem;
+  line-height: 1.6;
+}
+main section article[data-activity-type=root] h4 span:last-child {
+  position: absolute;
+  left: 1.2rem;
+  top: 0;
+  transform: rotate(-90deg);
+}
+main section article[data-activity-type=root] footer span:nth-child(2) {
+  transform: rotate(-90deg) scaleY(-1);
+}
+main section article[data-activity-type=root] footer span:nth-child(2) svg line {
+  transform: scale(5);
+}
+main section article[data-activity-type=root] footer span:nth-child(3) {
+  left: -0.1rem;
+}
+
+body > footer {
+  font-family: "Fira Mono";
+  font-weight: normal;
+  font-size: 0.68rem;
+  display: flex;
+  min-height: 3rem;
+  padding: 0 5vw;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2000;
+  background: var(--background);
+}
+
+/*# sourceMappingURL=site.css.map */
