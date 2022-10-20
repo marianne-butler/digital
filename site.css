@@ -7,6 +7,7 @@
   --background-alt: #E6E6FA;
   --accent: turquoise;
   --accent2: magenta;
+  color-scheme: only light;
 }
 
 @font-face {
@@ -115,11 +116,6 @@ body {
   line-height: 1;
   font-variation-settings: "wght" 400;
   background: var(--background-alt);
-}
-@media (prefers-color-scheme: dark) {
-  body {
-    background: black;
-  }
 }
 body * {
   margin: 0;
