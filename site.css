@@ -320,29 +320,16 @@ header .punctuation {
 menu {
   display: grid;
   position: fixed;
+  align-items: flex-start;
   grid-template-columns: 1fr;
-  grid-template-rows: 3.3rem max-content max-content;
   left: 0;
   right: 0;
   top: 0;
+  background: transparent;
   transition: all 0.45s;
 }
-@media (min-width: 600px) {
-  menu {
-    grid-template-columns: max-content 1fr;
-  }
-}
-menu:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
+[data-state=scroll] menu {
   background: var(--background-alt);
-  opacity: 1;
-  transition: opacity 0.3s;
 }
 [data-state=splash] menu {
   top: 23vh;
@@ -354,24 +341,9 @@ menu:after {
   [data-state=splash] menu {
     left: 20vw;
     right: 20vw;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: 3.3rem max-content max-content;
   }
-}
-[data-state=scroll] menu:before {
-  content: "";
-  grid-column-start: 1;
-  grid-row-start: 1;
-  grid-row-end: span 3;
-  background: var(--background-alt);
-}
-[data-state=scroll] menu:after {
-  opacity: 1;
-}
-[data-state=scroll] menu > * {
-  position: relative;
-  z-index: 1;
-}
-[data-focus="0"] menu:after {
-  opacity: 0;
 }
 menu button {
   font-size: 1rem;
@@ -380,6 +352,7 @@ menu button {
   pointer-events: all;
   user-select: none;
   cursor: pointer;
+  height: 3rem;
 }
 menu button[data-action=splash] {
   pointer-events: none;
@@ -388,7 +361,7 @@ menu button[data-action=splash] {
   justify-self: flex-start;
   opacity: 0;
   transition: opacity 0.45s;
-  margin: 0 1rem 0 2rem;
+  margin: -0.1rem 1rem 0 3.6rem;
   position: relative;
 }
 [data-state=scroll] menu button[data-action=splash] {
@@ -413,7 +386,8 @@ menu button[data-action=splash]:hover, menu button[data-action=splash]:focus {
   font-variation-settings: "wght" 350;
 }
 menu button[data-action=splash]:hover span.punctuation, menu button[data-action=splash]:focus span.punctuation {
-  bottom: -3rem;
+  right: -1.3rem;
+  bottom: -2.8rem;
 }
 menu button[data-action=contact] {
   padding: 0 0 0 1rem;
@@ -478,15 +452,24 @@ menu button[data-action=scroll] {
   grid-template-rows: 2.4rem;
   position: relative;
   grid-column-start: 1;
-  grid-row-start: 3;
+  grid-row-start: 1;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.45s 0.9s;
 }
+[data-state=splash] menu button[data-action=scroll] {
+  opacity: 1;
+  pointer-events: all;
+  grid-row-start: 3;
+}
 @media (min-width: 600px) {
-  menu button[data-action=scroll] {
+  [data-state=splash] menu button[data-action=scroll] {
     grid-column-start: 2;
+    grid-row-start: 3;
   }
+}
+[data-state=scroll] menu button[data-action=scroll] {
+  transform: translateY(3rem);
 }
 menu button[data-action=scroll] span {
   grid-column-start: 1;
@@ -516,23 +499,14 @@ menu button[data-action=scroll]:hover:before, menu button[data-action=scroll]:ho
 menu button[data-action=scroll]:hover:after, menu button[data-action=scroll]:active:after {
   transform: rotate(90deg) translate(2.2rem, -1rem);
 }
-[data-state=splash] menu button[data-action=scroll] {
-  opacity: 1;
-  pointer-events: all;
-}
 menu details {
   font-size: 1rem;
   justify-self: flex-end;
   grid-column-start: 1;
-  grid-row-start: 2;
+  grid-row-start: 1;
   background: transparent;
   border-bottom: 0.1rem solid transparent;
   transition: all 0.3s;
-}
-@media (min-width: 600px) {
-  menu details {
-    grid-column-start: 2;
-  }
 }
 menu details summary {
   pointer-events: all;
@@ -542,7 +516,6 @@ menu details summary {
   align-items: center;
   grid-template-rows: 2.4rem;
   grid-template-columns: 1rem 1fr;
-  position: relative;
 }
 menu details summary h2 {
   grid-column-start: 2;
@@ -578,38 +551,58 @@ menu details summary:hover h3 > strong, menu details summary:focus h3 > strong {
 menu details ul {
   height: 10rem;
 }
-menu details[open] {
+[data-state=scroll] menu details {
+  justify-self: flex-start;
+  grid-column-start: 1;
+}
+[data-state=scroll] menu details.hamburger {
+  padding: 0 1rem 0 2rem;
+}
+[data-state=scroll] menu details.hamburger > summary:before, [data-state=scroll] menu details.hamburger > summary h2 {
+  display: none;
+}
+[data-state=scroll] menu details.hamburger > summary h3 {
+  width: 1rem;
+  height: 1rem;
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  transform: rotate(90deg) translateX(0.2rem);
+  letter-spacing: 0.1rem;
+  font-variation-settings: "wght" 350;
+}
+[data-state=scroll] menu details.hamburger > summary:hover h3 > strong, [data-state=scroll] menu details.hamburger > summaryfocus h3 > strong {
+  font-variation-settings: "wght" 500;
+}
+[data-state=scroll] menu details.hamburger[open] {
   grid-column-end: span 2;
   justify-self: stretch !important;
   border-bottom-color: var(--content);
 }
-menu details[open] summary:before {
-  transform: rotate(90deg) translate(0.2rem, 0.2rem);
+[data-state=splash] menu details.hamburger {
+  margin-top: 4rem;
+  grid-row-start: 2;
 }
-[data-state=scroll] menu details {
-  margin: 0 1rem 0 2rem;
-  justify-self: flex-start;
-  grid-column-start: 1;
+[data-state=splash] menu details.hamburger > summary h3 {
+  display: none;
 }
-menu details:not(.show-content) {
+@media (min-width: 600px) {
+  [data-state=splash] menu details.hamburger {
+    grid-column-start: 2;
+  }
+}
+menu details > details {
   opacity: 1;
-  grid-row-start: 3;
   transition: opacity 0.45s;
 }
-[data-state=splash] menu details:not(.show-content) {
+[data-state=splash] menu details > details {
   opacity: 0;
-}
-[data-state=splash] menu details:not(.show-content) summary {
-  pointer-events: none;
-}
-[data-state=scroll] menu details.show-content summary h2 {
   display: none;
 }
-[data-state=splash] menu details.show-content {
-  margin-top: 4rem;
+menu details > details[open] {
+  justify-self: stretch !important;
 }
-[data-state=splash] menu details.show-content summary h3 {
-  display: none;
+menu details > details[open] summary:before {
+  transform: rotate(90deg) translate(0.2rem, 0.2rem);
 }
 
 main {
@@ -821,11 +814,16 @@ main section article > h5 span:last-child svg path, main section article > h5 sp
   vector-effect: non-scaling-stroke;
 }
 main section article ul li {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-variation-settings: "wght" 300;
   position: absolute;
   top: 0;
   left: 2rem;
+}
+@media (min-width: 600px) {
+  main section article ul li {
+    font-size: 0.8rem;
+  }
 }
 main section article footer {
   position: absolute;
@@ -833,12 +831,26 @@ main section article footer {
   bottom: 0;
 }
 main section article footer small {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-variation-settings: "wght" 300;
-  margin-left: 3rem;
+  display: block;
+  padding-left: 2rem;
+  text-align: left;
+  line-height: 1rem;
+}
+@media (min-width: 600px) {
+  main section article footer small {
+    font-size: 0.8rem;
+  }
 }
 main section article footer small strong:before {
   content: "began working for ";
+}
+@media (min-width: 600px) {
+  main section article footer small {
+    font-size: 0.8rem;
+    padding-left: 3rem;
+  }
 }
 main section article footer > span:nth-child(2), main section article footer > span:nth-child(3) {
   position: absolute;
@@ -923,7 +935,7 @@ main section article[data-activity-type=core]:before, main section article[data-
   z-index: 0;
 }
 main section article[data-activity-type=core] > h5, main section article[data-activity-type=branch] > h5, main section article[data-activity-type=contract] > h5 {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-variation-settings: "wght" 300;
   position: absolute;
   left: 0;
@@ -935,6 +947,11 @@ main section article[data-activity-type=core] > h5, main section article[data-ac
   text-transform: uppercase;
   color: var(--background);
   display: flex;
+}
+@media (min-width: 600px) {
+  main section article[data-activity-type=core] > h5, main section article[data-activity-type=branch] > h5, main section article[data-activity-type=contract] > h5 {
+    font-size: 0.8rem;
+  }
 }
 main section article[data-activity-type=core] > h5:before, main section article[data-activity-type=branch] > h5:before, main section article[data-activity-type=contract] > h5:before {
   width: 1.3rem;

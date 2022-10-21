@@ -2,6 +2,7 @@
  * dom elements
  ***/
 const header = document.querySelector('header'),
+hamburger = header.querySelector(".details"),
 mainContainer = document.querySelector('main'),
 timeline = mainContainer.querySelector('#timeline'),
 activities = mainContainer.querySelector('#activities');
@@ -85,34 +86,25 @@ timeline.querySelectorAll('li').forEach(function(el) {
 /*** 
 * toggle splash/scroll
 ***/
+let open = false;
 const setSplash = function(isSplash) {
 	document.body.setAttribute("data-state", isSplash ? "splash" : "scroll");
-	if (isSplash) header.querySelectorAll("details").forEach((el) => el.removeAttribute("open"))
 }
 
-header.querySelectorAll(".show-content").forEach(function(el) {
-	el.addEventListener("click", function() {
-		setSplash(false);
-	});
-});
-header.querySelectorAll(".show-splash").forEach(function(el) {
-	el.addEventListener("click", function() {
-		setSplash(true);
-	});
-});
+header.querySelector("[data-action=scroll]").addEventListener("click", () => setSplash(false));
+header.querySelector("[data-action=splash]").addEventListener("click", () => setSplash(true));
+
 header.querySelectorAll("details").forEach(function(el) {
 	el.addEventListener("toggle", function(event) {
-		let focus = parseInt(header.getAttribute("data-focus"));
 		if (el.getAttribute("open") == null) {
+			if (document.body.getAttribute("data-state") === "splash") {
+				el.setAttribute("open", "");
+				setSplash(false);
+				el.querySelector("details").setAttribute("open", "");
+			}
 			el.querySelector("summary").blur();
-			focus --;
 		}
-		else focus ++;
-		header.setAttribute("data-focus", focus);
 	});
-});
-header.querySelector("[data-action=contact]").addEventListener("click", function() {
-	console.log("hello");
 });
 new IntersectionObserver(
 	(items) => setSplash(items[0].isIntersecting), 

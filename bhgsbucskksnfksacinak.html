@@ -17,13 +17,13 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 </head>
  <body data-state="splash">
-    <header data-focus="0">
+    <header>
     	<h1>
     		<span>Hello!</span>
     		<span>
@@ -38,28 +38,33 @@
     		<span class="punctuation">~</span>
     	</p>
     	<menu>
-			<button data-action="splash" class="show-splash">
+			<button data-action="splash">
 				<span>Marianne</span>
         <span class="punctuation">~</span>
 			</button>
       <button data-action="contact" data-tf-slider="tkF0ZINp" data-tf-width="550" data-tf-iframe-props="title=Work with me" data-tf-medium="snippet">
         <span>Work with me</span>
       </button>
-      <button data-action="scroll" class="show-content">
+      <button data-action="scroll">
         <span>See what I've done in the&nbsp;past</span>
       </button>
-    	<details class="show-content">
-				<summary>
-					<h2>See my skill summary</h2>
-          <h3><strong>Skills</strong></h3>
-				</summary>
-				<ul>Lorem ipsum dolor sit amet</ul>
-			</details>
-      <details>
-        <summary >
-          <h3><strong>Experience</strong></h3>
+      <details class="hamburger">
+        <summary>
+          <h2>See my skill summary</h2>
+          <h3><strong>|||</strong></h3>
         </summary>
-        <ul>Lorem ipsum dolor sit amet</ul>
+        <details>
+          <summary>
+            <h3><strong>Skills</strong></h3>
+          </summary>
+          <ul>Lorem ipsum dolor sit amet</ul>
+        </details>
+        <details>
+          <summary >
+            <h3><strong>Experience</strong></h3>
+          </summary>
+          <ul>Lorem ipsum dolor sit amet</ul>
+        </details>
       </details>
     	</menu>
     </header>
