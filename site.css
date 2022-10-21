@@ -28,41 +28,6 @@
   font-weight: normal;
   font-style: normal;
 }
-a {
-  text-decoration: none;
-  position: relative;
-  display: block;
-  transition: font-variation-settings 0.15s;
-}
-a:link, a:visited, a:hover, a:active {
-  color: var(--content);
-}
-a span {
-  position: relative;
-  z-index: 1;
-  padding: 0 0.3rem;
-}
-a:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 0.6rem;
-  background: turquoise;
-  opacity: 0.5;
-  transition: opacity 0.15s;
-}
-a:hover {
-  font-variation-settings: "wght" 350;
-}
-a:hover:before {
-  opacity: 1;
-}
-footer a:before {
-  height: 0.3rem;
-}
-
 html {
   background: var(--background-alt);
   font-size: 5vw;
@@ -1298,6 +1263,44 @@ body > footer {
   position: relative;
   z-index: 2000;
   background: var(--background);
+}
+body > footer a {
+  text-decoration: none;
+  position: relative;
+  display: block;
+  transition: font-variation-settings 0.15s;
+}
+body > footer a:link, body > footer a:visited, body > footer a:hover, body > footer a:active {
+  color: var(--content);
+}
+body > footer a span {
+  position: relative;
+  z-index: 1;
+  padding: 0 0.3rem;
+}
+body > footer a:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 0.6rem;
+  background: turquoise;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+body > footer a:hover {
+  font-variation-settings: "wght" 350;
+}
+body > footer a:hover:before {
+  opacity: 1;
+}
+footer body > footer a:before {
+  height: 0.3rem;
+}
+
+.tf-v1-iframe-wrapper iframe {
+  border-radius: 0 !important;
 }
 
 /*# sourceMappingURL=site.css.map */
