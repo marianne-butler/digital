@@ -10,9 +10,9 @@ activities = mainContainer.querySelector('#activities');
 /*** 
 * cv html
 ***/
-const startYear = 1998, numYears = 2024 - startYear,
+const startYear = 1997, endYear = 2023, numYears = endYear - startYear,
 years = Array.from(Array(numYears).keys()),
-monthHeight = 100 / numYears / 12,
+monthPercentage = 100 / numYears / 12,
 appendSpiral = function({el, count = 1}) {
 	if (el == null) return;
 	for (i = 0; i < count; i++) {
@@ -26,30 +26,32 @@ appendSpiral = function({el, count = 1}) {
 		el.appendChild(container);
 	}
 },
-calculateTop = function({month, year}) {
-	return (12 * (2022 - parseInt(year))) + 13 - parseFloat(month);
-},
-calculateBottom = function({month, year}) {
-	let bottom = 12 * (parseInt(year) - startYear + 1);
-	return bottom + parseFloat(month) - 1;
+calculatePosition = function({toYear, toMonth, fromYear = null, fromMonth = 1}) {
+	const calculateMonth = (y, m) => (12 * (endYear - 1 - parseInt(y))) + 13 - parseFloat(m),
+	startMonth = calculateMonth(toYear, toMonth),
+	endMonth = fromYear == null ? startMonth : calculateMonth(fromYear, fromMonth)
+	return [startMonth, endMonth - startMonth];
 };
 
 async function setupHtml() {
  	timeline.setAttribute("data-years", numYears);
 	timeline.innerHTML = years.reverse().reduce(function(str, year) {
-		return str + `<li data-year="${startYear + year}"></li>`;
+		return str + `<li data-year="${startYear + year + 1}"></li>`;
 	}, "");
 
 	activities.querySelectorAll("article").forEach(function(act) {
-		const top = calculateTop({year: act.getAttribute("data-end-year"), month: act.getAttribute("data-end-month")}),
-		bottom = calculateBottom({year: act.getAttribute("data-start-year"), month: act.getAttribute("data-start-month")}),
-		span = (numYears * 12) - bottom - top;
-		act.style.top = `${top * monthHeight}%`;
-		act.style.bottom = `${bottom * monthHeight}%`;
+		const [activityTop, activityLength] = calculatePosition({
+			toYear: act.getAttribute("data-end-year"), 
+			toMonth: act.getAttribute("data-end-month"),
+			fromYear: act.getAttribute("data-start-year"),
+			fromMonth: act.getAttribute("data-start-month"),
+		});
+		act.style.top = `${activityTop * monthPercentage}%`;
+		act.style.minHeight = `${activityLength * monthPercentage}%`;
 		appendSpiral({el: act.querySelector("h4")});
 		appendSpiral({el: act.querySelector("h5")});
 
-		if (span > 3) {
+		if (activityLength > 3) {
 			const foot = document.createElement("footer");
 			foot.innerHTML = `<small>
 				${act.getAttribute("data-start-year")}: 
@@ -59,8 +61,11 @@ async function setupHtml() {
 			act.appendChild(foot);
 
 			act.querySelectorAll("li").forEach(function(eve) {
-				const pos = calculateTop({month: eve.getAttribute("data-event-month"), year: eve.getAttribute("data-event-year")});
-				eve.style.top = `${(pos - top) / span * 100}%`;
+				const [eventPosition, eventlength] = calculatePosition({
+					toYear: eve.getAttribute("data-event-year"),
+					toMonth: eve.getAttribute("data-event-month")
+				});
+				eve.style.top = `${(eventPosition - activityTop) / activityLength * 100}%`;
 			});
 		} // else it's a one-off project
 	});
