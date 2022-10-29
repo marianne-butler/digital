@@ -96,7 +96,12 @@ async function initCV() {
 	const ioContent = new IntersectionObserver(
 		function(items) {
 			items.forEach(function({target, isIntersecting}) {
-				target.setAttribute("data-state", isIntersecting ? "in" : "out")
+				if (isIntersecting) {
+					target.querySelectorAll("[data-content-type=placeholder]").forEach(el => el.style.backgroundImage = `url("https://picsum.photos/600")`);
+					target.querySelectorAll("[data-content-type=png]").forEach(el => el.style.backgroundImage = `url("/content/${target.getAttribute("data-content-id")}.png")`);
+					target.setAttribute("data-state", "in");
+					ioContent.unobserve(target);
+				}
 			});
 		}, 
 		{
