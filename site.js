@@ -26,6 +26,8 @@ appendSpiral = function({el, count = 1}) {
 		el.appendChild(container);
 	}
 },
+appendPng = ({el, name}) => el.style.backgroundImage = `url("/content/${name}.png")`;
+appendPlaceholder = (el) => el.style.backgroundImage = 'url("https://picsum.photos/600")',
 calculatePosition = function({toYear, toMonth, fromYear = null, fromMonth = 1}) {
 	const calculateMonth = (y, m) => (12 * (endYear - 1 - parseInt(y))) + 13 - parseFloat(m),
 	startMonth = calculateMonth(toYear, toMonth),
@@ -97,8 +99,24 @@ async function initCV() {
 		function(items) {
 			items.forEach(function({target, isIntersecting}) {
 				if (isIntersecting) {
-					target.querySelectorAll("[data-content-type=placeholder]").forEach(el => el.style.backgroundImage = `url("https://picsum.photos/600")`);
-					target.querySelectorAll("[data-content-type=png]").forEach(el => el.style.backgroundImage = `url("/content/${target.getAttribute("data-content-id")}.png")`);
+					target.querySelectorAll("[data-content-type=placeholder]").forEach(appendPlaceholder);
+					target.querySelectorAll("[data-content-type=png]").forEach(el => appendPng({el: el, name: target.getAttribute("data-content-id")}));
+					target.querySelectorAll("[data-content-type=poster]").forEach(function(el) {
+						appendPng({el: el, name: "poster_bg_l"});
+						for (var i=0; i < el.getAttribute("data-image-count"); i++) {
+							const span = document.createElement("span");
+							appendPng({el: span, name: target.getAttribute("data-content-id")+i});
+							el.appendChild(span);
+						}
+					});
+					target.querySelectorAll("[data-content-type=website]").forEach(function(el) {
+						appendPng({el: el, name: "website_bg"});
+						for (var i=0; i < el.getAttribute("data-image-count"); i++) {
+							const span = document.createElement("span");
+							appendPng({el: span, name: target.getAttribute("data-content-id")+i});
+							el.appendChild(span);
+						}
+					});
 					target.setAttribute("data-state", "in");
 					ioContent.unobserve(target);
 				}
