@@ -1142,10 +1142,10 @@ article div figure > span {
 article div figure > span > span {
   display: block;
   position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  right: 0.5rem;
-  bottom: 0.5rem;
+  top: 0.7rem;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: 0.7rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -1170,6 +1170,19 @@ article div figure > span > span:nth-child(2) {
   100% {
     opacity: 0;
   }
+}
+article div figure > span[data-content-type=website] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-alt);
+}
+article div figure > span[data-content-type=website]:before {
+  content: "";
+  width: 100%;
+  height: 73.2265446224%;
+  background: var(--content);
+  border-radius: 0.7rem;
 }
 article div figure > figcaption {
   grid-column-start: 1;
@@ -1247,18 +1260,18 @@ article div figure[data-content-id=cs_menu] {
   }
 }
 article div figure[data-content-id=sscy_website] {
-  width: 21.4710982659rem;
+  width: 23.215625rem;
 }
 @media (min-width: 600px) {
   article div figure[data-content-id=sscy_website] {
     width: 45vw;
-    grid-template-rows: 35.6292906178vw 3rem;
+    grid-template-rows: 32.9519450801vw 3rem;
   }
 }
 @media (min-width: 1100px) {
   article div figure[data-content-id=sscy_website] {
     width: 33rem;
-    grid-template-rows: 23.7528604119vw 3rem;
+    grid-template-rows: 21.9679633867vw 3rem;
   }
 }
 @media (min-width: 600px) {
@@ -1292,13 +1305,13 @@ article div figure[data-content-id=sscy_website] {
 @media (min-width: 600px) {
   article div figure[data-content-id=sfcc_website], article div figure[data-content-id=stan_website], article div figure[data-content-id=tee_website], article div figure[data-content-id=vee_website], article div figure[data-content-id=slopes_website] {
     width: 45vw;
-    height: 35.6292906178vw;
+    height: 32.9519450801vw;
   }
 }
 @media (min-width: 1100px) {
   article div figure[data-content-id=sfcc_website], article div figure[data-content-id=stan_website], article div figure[data-content-id=tee_website], article div figure[data-content-id=vee_website], article div figure[data-content-id=slopes_website] {
     width: 33rem;
-    height: 26.1281464531rem;
+    height: 24.1647597254rem;
   }
 }
 article footer {
