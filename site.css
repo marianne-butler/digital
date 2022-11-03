@@ -1070,11 +1070,10 @@ article div {
   grid-row-end: span 3;
   grid-column-start: 1;
   display: flex;
-  align-items: stretch;
-  min-height: 12rem;
   pointer-events: all;
   width: 100vw;
   overflow-x: auto;
+  overflow-y: hidden;
   position: relative;
   z-index: 0;
   padding: 7.7rem 0 1.3rem;
@@ -1090,6 +1089,7 @@ article div:before {
 @media (min-width: 600px) {
   article div {
     overflow-x: visible;
+    overflow-y: visible;
   }
   article div:before {
     position: absolute;
@@ -1113,11 +1113,12 @@ article div:before {
 }
 article div figure {
   margin: 1rem 1.6rem 0 0;
-  width: 27rem;
+  width: 17rem;
   flex-shrink: 0;
   max-width: calc(100vw - 4rem);
   display: grid;
-  grid-template-rows: 1fr max-content;
+  grid-template-rows: 17rem 3rem;
+  background: var(--background-alt);
 }
 article div figure > h6 {
   grid-column-start: 1;
@@ -1133,52 +1134,23 @@ article div figure > ul li {
 article div figure > span {
   grid-column-start: 1;
   grid-row-start: 1;
-  grid-row-end: span 2;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   position: relative;
+  background-position: center;
 }
-article div figure > span[data-content-type=website] > span {
+article div figure > span > span {
   display: block;
   position: absolute;
-  top: 4.8%;
-  left: 3.6%;
-  width: 92.8%;
-  bottom: 29%;
-  background-size: cover;
-  background-position: top center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-article div figure > span[data-content-type=website] > span:nth-child(2) {
-  opacity: 0;
-  animation: slideshow1 10s infinite forwards;
-}
-@keyframes slideshow1 {
-  0% {
-    opacity: 0;
-  }
-  30% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-article div figure > span[data-content-type=poster] > span {
-  display: block;
-  position: absolute;
-  top: 4.5%;
-  left: 3.5%;
-  right: 4.5%;
-  bottom: 12%;
-  background-size: cover;
-  background-position: top center;
-}
-article div figure > span[data-content-type=poster] > span:nth-child(2) {
+article div figure > span > span:nth-child(2) {
   opacity: 0;
   animation: slideshow1 10s infinite forwards;
 }
@@ -1209,6 +1181,7 @@ article div figure > figcaption {
   flex-direction: column;
   align-content: center;
   justify-content: flex-end;
+  text-align: center;
 }
 article div figure > figcaption:before {
   content: "";
@@ -1224,17 +1197,6 @@ article div figure > figcaption > * {
   position: relative;
   z-index: 1;
   padding: 1rem;
-}
-article div figure > span[data-content-type=website] ~ figcaption {
-  margin-bottom: 10.8%;
-}
-article div figure > span[data-content-type=website] ~ figcaption > * {
-  margin: 1.2% 0 1%;
-}
-article div figure > span[data-content-type=website] ~ figcaption:before {
-  border-bottom-left-radius: 2%;
-  border-bottom-right-radius: 2%;
-  opacity: 0.7 !important;
 }
 article div figure:first-child > ul {
   margin: 0 1rem 0 2rem;
@@ -1273,28 +1235,34 @@ article div figure:first-child > ul {
     transform: translateX(0);
   }
 }
+article div figure[data-content-id=cs_menu] {
+  width: 21.5631578947rem;
+}
 @media (min-width: 600px) {
   article div figure[data-content-id=cs_menu] {
     width: 45vw;
-    height: 35.4771784232vw;
+    grid-template-rows: 35.4771784232vw 3rem;
   }
 }
 @media (min-width: 1100px) {
   article div figure[data-content-id=cs_menu] {
     width: 30rem;
-    height: 23.6514522822rem;
+    grid-template-rows: 23.6514522822vw 3rem;
   }
+}
+article div figure[data-content-id=sscy_website] {
+  width: 21.4710982659rem;
 }
 @media (min-width: 600px) {
   article div figure[data-content-id=sscy_website] {
     width: 45vw;
-    height: 35.6292906178vw;
+    grid-template-rows: 35.6292906178vw 3rem;
   }
 }
 @media (min-width: 1100px) {
   article div figure[data-content-id=sscy_website] {
     width: 33rem;
-    height: 26.1281464531rem;
+    grid-template-rows: 23.7528604119vw 3rem;
   }
 }
 @media (min-width: 600px) {
