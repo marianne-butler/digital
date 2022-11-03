@@ -1118,7 +1118,6 @@ article div figure {
   max-width: calc(100vw - 4rem);
   display: grid;
   grid-template-rows: 17rem 3rem;
-  background: var(--background-alt);
 }
 article div figure > h6 {
   grid-column-start: 1;
@@ -1132,6 +1131,7 @@ article div figure > ul li {
   margin-bottom: 0.3rem;
 }
 article div figure > span {
+  background-color: white;
   grid-column-start: 1;
   grid-row-start: 1;
   background-size: contain;
@@ -1175,28 +1175,12 @@ article div figure > figcaption {
   grid-column-start: 1;
   grid-row-start: 1;
   grid-row-end: span 2;
-  position: relative;
-  align-self: flex-end;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: flex-end;
   text-align: center;
-}
-article div figure > figcaption:before {
-  content: "";
-  background: var(--background-alt);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 0.7;
-}
-article div figure > figcaption > * {
-  position: relative;
-  z-index: 1;
-  padding: 1rem;
+  padding-bottom: 0.6rem;
 }
 article div figure:first-child > ul {
   margin: 0 1rem 0 2rem;
@@ -1212,17 +1196,29 @@ article div figure:first-child > ul {
     transition: transform 1s;
   }
   article div figure > figcaption {
-    min-height: 100%;
-    transition: min-height 0.1s;
+    position: relative;
+  }
+  article div figure > figcaption:before {
+    content: "";
+    background: var(--background-alt);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+  article div figure > figcaption > * {
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
   }
   article div figure:hover {
     z-index: 100;
   }
-  article div figure:hover > figcaption {
-    min-height: 0;
-  }
   article div figure:hover > figcaption:before {
-    opacity: 0.9;
+    opacity: 0;
   }
   article div figure:nth-child(odd) {
     transform: translateX(100vw);
@@ -1594,7 +1590,7 @@ article[data-activity-category=education] h4 span.spiral:before, article[data-ac
   background: var(--accent2);
 }
 article[data-activity-type=root] h5 span:not(.spiral) {
-  margin: 5rem 0 0 4.8rem;
+  margin: 5rem 1rem 0 5.8rem;
 }
 article[data-activity-type=root] h5 span.spiral {
   margin-top: 4rem;
@@ -1698,11 +1694,12 @@ article[data-activity-type=root] h4[data-state=in] span.spiral:before {
   }
 }
 article[data-activity-type=root] > div {
-  min-height: 1rem;
+  overflow: hidden;
 }
 article[data-activity-type=root] > div:before {
-  width: 100%;
-  top: auto;
+  right: 0;
+  bottom: 1rem;
+  position: absolute;
   height: 2px;
   margin: 1rem 0 0 1rem;
 }
@@ -1710,6 +1707,9 @@ article[data-activity-type=root] > div:before {
   article[data-activity-type=root] > div:before {
     display: none;
   }
+}
+article[data-activity-type=root] > div figure {
+  grid-template-rows: max-content 0;
 }
 @media (min-width: 600px) {
   article[data-activity-type=root][data-activity-id=els] footer span.spiral:nth-child(2) line {
