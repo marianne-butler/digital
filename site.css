@@ -7,8 +7,8 @@
   --background-alt: #E6E6FA;
   --background-trans: rgba(230,230,250,0.86);
   --background-trans-mini: rgba(230,230,250,0.95);
-  --accent: turquoise;
-  --accent2: magenta;
+  --accent: cyan;
+  --accent2: white;
   color-scheme: only light;
 }
 
@@ -922,6 +922,8 @@ article h4 span:not(.spiral) {
   grid-row-start: 1;
   grid-column-start: 2;
   font-size: 1.2rem;
+  transform: translateY(-2rem);
+  padding: 0 1rem;
 }
 @media (min-width: 600px) {
   article h4 span:not(.spiral) {
@@ -993,9 +995,8 @@ article h5 {
   grid-row-end: span 3;
   align-self: stretch;
   display: grid;
-  grid-template-columns: 0.2rem 1fr;
+  grid-template-columns: 0.2rem 1.7rem 1fr;
   grid-template-rows: 100%;
-  grid-column-gap: 1rem;
   align-items: flex-start;
   grid-column-start: 1;
   z-index: 2;
@@ -1009,14 +1010,6 @@ article h5:after {
   align-self: stretch;
   background: var(--content);
 }
-@media (min-width: 600px) {
-  article h5:after {
-    margin-bottom: 1rem;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    border-top-left-radius: 0.3rem;
-  }
-}
 article h5 span {
   grid-row-start: 1;
 }
@@ -1026,13 +1019,14 @@ article h5 span:not(.spiral) {
   font-size: 0.9rem;
   position: relative;
   z-index: 2;
-  grid-column-start: 2;
-  margin: 6.5rem 0 0 6.4rem;
+  grid-column-start: 3;
+  margin: 4.5rem 1rem 0 6.8rem;
 }
 article h5 span.spiral {
-  grid-column-start: 1;
+  grid-column-start: 2;
   transform-origin: top left;
-  transform: rotate(-90deg) translate(-6.1rem, 0.75rem);
+  margin: 6rem 0 0 0.5rem;
+  transform: rotate(-90deg);
 }
 article h5 span.spiral svg {
   width: 1.2rem;
@@ -1063,31 +1057,35 @@ article h5 span.spiral svg path {
 article h5[data-header-state=in] span.spiral svg line, article h5[data-header-state=in] span.spiral svg path {
   stroke-dashoffset: 0 !important;
 }
+@media (min-width: 600px) {
+  article h5:after {
+    margin-bottom: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-top-left-radius: 0.3rem;
+  }
+}
 article div {
-  grid-row-start: 2;
-  grid-row-end: span 2;
+  grid-row-start: 1;
+  grid-row-end: span 3;
   grid-column-start: 1;
   display: flex;
   align-items: stretch;
-  min-height: 20rem;
+  min-height: 12rem;
   pointer-events: all;
   width: 100vw;
   overflow-x: auto;
   position: relative;
+  z-index: 0;
+  padding: 7.7rem 0 1.3rem;
 }
 article div:before {
   content: "";
   position: sticky;
-  top: 0;
-  left: 0.7rem;
-  bottom: 1.2rem;
-  margin-top: 3rem;
-  border-left: 2px solid;
-  border-bottom: 1px solid transparent;
-  transition: border-bottom-color 1s;
-}
-article div[data-footer-state=in]:before {
-  border-bottom-color: var(--content);
+  z-index: 20;
+  left: calc(0.7rem - 1px);
+  min-width: 2px;
+  background: var(--content);
 }
 @media (min-width: 600px) {
   article div {
@@ -1095,11 +1093,26 @@ article div[data-footer-state=in]:before {
   }
   article div:before {
     position: absolute;
+    left: calc(0.7rem - 1px);
+    top: 7rem;
+    bottom: 1.3rem;
+  }
+  article div:after {
+    content: "";
+    position: absolute;
+    left: calc(0.7rem - 1px);
+    right: 100vw;
+    bottom: 1.3rem;
+    min-height: 1px;
+    background: var(--content);
+    transition: right 1s;
+  }
+  article div[data-footer-state=in]:after {
     right: 0;
   }
 }
 article div figure {
-  margin: 4.3rem 1.6rem 0 0;
+  margin: 1rem 1.6rem 0 0;
   width: 27rem;
   flex-shrink: 0;
   max-width: calc(100vw - 4rem);
@@ -1224,12 +1237,7 @@ article div figure > span[data-content-type=website] ~ figcaption:before {
   opacity: 0.7 !important;
 }
 article div figure:first-child > ul {
-  margin-left: 6.7rem;
-}
-@media (min-width: 600px) {
-  article div figure:first-child {
-    top: 5rem;
-  }
+  margin: 0 1rem 0 2rem;
 }
 @media (min-width: 600px) {
   article div figure {
@@ -1237,9 +1245,9 @@ article div figure:first-child > ul {
     z-index: 0;
     opacity: 0;
     margin: 0;
-  }
-  article div figure[data-state=in] {
-    opacity: 1;
+    top: 8rem;
+    left: 2rem;
+    transition: transform 1s;
   }
   article div figure > figcaption {
     min-height: 100%;
@@ -1254,11 +1262,19 @@ article div figure:first-child > ul {
   article div figure:hover > figcaption:before {
     opacity: 0.9;
   }
+  article div figure:nth-child(odd) {
+    transform: translateX(100vw);
+  }
+  article div figure:nth-child(even) {
+    transform: translateX(-20vw);
+  }
+  article div figure[data-state=in] {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 @media (min-width: 600px) {
   article div figure[data-content-id=cs_menu] {
-    left: 50vw;
-    top: -2rem;
     width: 45vw;
     height: 35.4771784232vw;
   }
@@ -1271,49 +1287,31 @@ article div figure:first-child > ul {
 }
 @media (min-width: 600px) {
   article div figure[data-content-id=sscy_website] {
-    z-index: 10;
-    top: 20vw;
-    right: -50vw;
     width: 45vw;
     height: 35.6292906178vw;
   }
 }
 @media (min-width: 1100px) {
   article div figure[data-content-id=sscy_website] {
-    top: auto;
-    bottom: 32%;
-    right: -35rem;
     width: 33rem;
     height: 26.1281464531rem;
   }
 }
 @media (min-width: 600px) {
   article div figure[data-content-id=sscy_graphics] {
-    z-index: 9;
-    right: -70vw;
-    bottom: 40%;
     width: 25vw;
     height: 35.4vw;
   }
 }
-@media (min-width: 900px) {
-  article div figure[data-content-id=sscy_graphics] {
-    bottom: 20%;
-  }
-}
 @media (min-width: 1100px) {
   article div figure[data-content-id=sscy_graphics] {
-    left: 1rem;
-    bottom: 33%;
     width: 15rem;
     height: 21.24rem;
   }
 }
 @media (min-width: 600px) {
   article div figure[data-content-id=sscy_other] {
-    left: 2rem;
     width: 12vw;
-    top: -7rem;
     transform: translateY(-100%);
   }
 }
@@ -1331,27 +1329,6 @@ article div figure:first-child > ul {
   article div figure[data-content-id=sfcc_website], article div figure[data-content-id=stan_website], article div figure[data-content-id=tee_website], article div figure[data-content-id=vee_website], article div figure[data-content-id=slopes_website] {
     width: 45vw;
     height: 35.6292906178vw;
-  }
-  article div figure[data-content-id=sfcc_website]:nth-child(odd), article div figure[data-content-id=stan_website]:nth-child(odd), article div figure[data-content-id=tee_website]:nth-child(odd), article div figure[data-content-id=vee_website]:nth-child(odd), article div figure[data-content-id=slopes_website]:nth-child(odd) {
-    left: 1rem;
-  }
-  article div figure[data-content-id=sfcc_website]:nth-child(even), article div figure[data-content-id=stan_website]:nth-child(even), article div figure[data-content-id=tee_website]:nth-child(even), article div figure[data-content-id=vee_website]:nth-child(even), article div figure[data-content-id=slopes_website]:nth-child(even) {
-    left: 30vw;
-  }
-  article div figure[data-content-id=sfcc_website]:nth-child(2), article div figure[data-content-id=stan_website]:nth-child(2), article div figure[data-content-id=tee_website]:nth-child(2), article div figure[data-content-id=vee_website]:nth-child(2), article div figure[data-content-id=slopes_website]:nth-child(2) {
-    bottom: 78.5%;
-  }
-  article div figure[data-content-id=sfcc_website]:nth-child(3), article div figure[data-content-id=stan_website]:nth-child(3), article div figure[data-content-id=tee_website]:nth-child(3), article div figure[data-content-id=vee_website]:nth-child(3), article div figure[data-content-id=slopes_website]:nth-child(3) {
-    bottom: 50%;
-  }
-  article div figure[data-content-id=sfcc_website]:nth-child(4), article div figure[data-content-id=stan_website]:nth-child(4), article div figure[data-content-id=tee_website]:nth-child(4), article div figure[data-content-id=vee_website]:nth-child(4), article div figure[data-content-id=slopes_website]:nth-child(4) {
-    bottom: 39.5%;
-  }
-  article div figure[data-content-id=sfcc_website]:nth-child(5), article div figure[data-content-id=stan_website]:nth-child(5), article div figure[data-content-id=tee_website]:nth-child(5), article div figure[data-content-id=vee_website]:nth-child(5), article div figure[data-content-id=slopes_website]:nth-child(5) {
-    bottom: 20%;
-  }
-  article div figure[data-content-id=sfcc_website]:nth-child(6), article div figure[data-content-id=stan_website]:nth-child(6), article div figure[data-content-id=tee_website]:nth-child(6), article div figure[data-content-id=vee_website]:nth-child(6), article div figure[data-content-id=slopes_website]:nth-child(6) {
-    bottom: 2%;
   }
 }
 @media (min-width: 1100px) {
@@ -1413,8 +1390,8 @@ article footer span.spiral:nth-child(2) {
   transform: rotate(31deg) scaleY(-1);
 }
 article footer span.spiral:nth-child(2) svg {
-  width: 0.8rem;
-  height: 1.2944rem;
+  width: 0.7rem;
+  height: 1.1326rem;
   overflow: visible;
 }
 article footer span.spiral:nth-child(2) svg path, article footer span.spiral:nth-child(2) svg line {
@@ -1432,8 +1409,8 @@ article footer span.spiral:nth-child(2) svg line {
   transition-timing-function: ease-in;
 }
 article footer span.spiral:nth-child(2) svg path {
-  stroke-dasharray: 3.8rem;
-  stroke-dashoffset: 3.8rem;
+  stroke-dasharray: 3.325rem;
+  stroke-dashoffset: 3.325rem;
   transition: stroke-dashoffset 0.8s;
   transition-delay: 0.4s;
   transition-timing-function: ease-out;
@@ -1444,8 +1421,8 @@ article footer span.spiral:nth-child(3) {
   transform: rotate(-90deg);
 }
 article footer span.spiral:nth-child(3) svg {
-  width: 0.8rem;
-  height: 1.2944rem;
+  width: 0.7rem;
+  height: 1.1326rem;
   overflow: visible;
 }
 article footer span.spiral:nth-child(3) svg path, article footer span.spiral:nth-child(3) svg line {
@@ -1463,8 +1440,8 @@ article footer span.spiral:nth-child(3) svg line {
   transition-timing-function: ease-in;
 }
 article footer span.spiral:nth-child(3) svg path {
-  stroke-dasharray: 3.8rem;
-  stroke-dashoffset: 3.8rem;
+  stroke-dasharray: 3.325rem;
+  stroke-dashoffset: 3.325rem;
   transition: stroke-dashoffset 0.8s;
   transition-delay: 0.4s;
   transition-timing-function: ease-out;
@@ -1484,17 +1461,14 @@ article[data-activity-type=core] {
 }
 @media (min-width: 600px) {
   article[data-activity-type=core] {
+    margin-left: 1rem;
     left: 0;
-    right: 80%;
   }
   article[data-activity-type=core] > * {
-    justify-self: flex-end;
+    width: calc(20vw - 1rem);
   }
   article[data-activity-type=core] h4 {
     margin-left: 0;
-    margin-right: 2.5rem;
-    text-align: right;
-    grid-template-columns: 1fr 4.3rem;
   }
   article[data-activity-type=core] h4 span.spiral {
     grid-column-start: 2;
@@ -1502,7 +1476,7 @@ article[data-activity-type=core] {
   article[data-activity-type=core] h5 {
     grid-template-columns: 1fr 1rem;
   }
-  article[data-activity-type=core] h5 span.spiral {
+  article[data-activity-type=core] h5 span {
     grid-column-start: 2;
   }
   article[data-activity-type=core] h5:before {
@@ -1513,19 +1487,9 @@ article[data-activity-type=core] {
     grid-column-start: 2;
     width: 0.2rem;
   }
-  article[data-activity-type=core] div {
-    width: calc(20vw - 1rem);
-  }
-  article[data-activity-type=core] div:before {
-    display: none;
-  }
-  article[data-activity-type=core] div figure:first-child {
-    width: calc(20vw - 2rem);
-  }
-  article[data-activity-type=core] div figure:first-child ul {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    text-align: right;
+  article[data-activity-type=core] > div:before {
+    right: calc(1.5rem - 1px);
+    left: auto;
   }
   article[data-activity-type=core] footer {
     grid-template-columns: 1fr 1rem;
@@ -1544,10 +1508,7 @@ article[data-activity-type=core] {
   }
 }
 @media (min-width: 600px) and (min-width: 1100px) {
-  article[data-activity-type=core] {
-    right: 70%;
-  }
-  article[data-activity-type=core] div {
+  article[data-activity-type=core] > * {
     width: calc(30vw - 1rem);
   }
   article[data-activity-type=core] div figure:first-child {
@@ -1558,27 +1519,33 @@ article[data-activity-type=core] h4 span:not(.spiral), article[data-activity-typ
   display: none;
 }
 article[data-activity-type=core] h4 .spiral {
-  transform: rotate(-90deg) translate(1rem, -0.2rem);
+  transform: rotate(-90deg);
+  margin: -2.3rem 0 0 -0.4rem;
 }
 article[data-activity-type=core] h4 .spiral:before {
   top: -1rem;
   left: 2rem;
-  opacity: 0.4;
-}
-@media (min-width: 600px) {
-  article[data-activity-type=core] h4 .spiral {
-    transform: rotate(-90deg) translate(1rem, 7.8rem);
-  }
 }
 article[data-activity-type=core] h4[data-state=in] .spiral:before {
   transform: scale(2);
 }
+@media (min-width: 600px) {
+  article[data-activity-type=core] h4 {
+    margin-right: 0;
+    grid-template-columns: 1fr 4.3rem;
+  }
+  article[data-activity-type=core] h4 .spiral {
+    margin: 0rem 0 0 calc(7.5rem - 1px);
+  }
+}
 article[data-activity-type=core] h5 .spiral {
-  transform: rotate(-90deg) scaleY(-1) translate(-0.9rem, -1.14rem);
+  transform: rotate(-90deg) scaleY(-1);
+  margin: 2rem 0 0 0.95rem;
 }
 @media (min-width: 600px) {
   article[data-activity-type=core] h5 .spiral {
-    transform: rotate(-90deg) scaleY(-1) translate(-2.9rem, 0.8rem);
+    margin-left: -0.8rem;
+    transform: rotate(-90deg) scaleY(-1);
   }
 }
 article[data-activity-type=core] h5:after {
@@ -1588,7 +1555,7 @@ article[data-activity-type=core] h5:after {
 @media (min-width: 600px) {
   article[data-activity-type=core] h5:after {
     margin-top: 0;
-    width: 0.5rem;
+    width: 0.3rem;
   }
 }
 article[data-activity-type=core] > footer {
@@ -1598,8 +1565,8 @@ article[data-activity-type=core] > footer > span.spiral:nth-child(2) {
   transform: rotate(90deg) scaleY(-1) translate(3.7rem, -0.7rem);
 }
 article[data-activity-type=core] > footer > span.spiral:nth-child(2) svg {
-  width: 0.8rem;
-  height: 1.2944rem;
+  width: 0.7rem;
+  height: 1.1326rem;
   overflow: visible;
 }
 article[data-activity-type=core] > footer > span.spiral:nth-child(2) svg path, article[data-activity-type=core] > footer > span.spiral:nth-child(2) svg line {
@@ -1610,15 +1577,15 @@ article[data-activity-type=core] > footer > span.spiral:nth-child(2) svg path, a
 }
 article[data-activity-type=core] > footer > span.spiral:nth-child(2) svg line {
   transform: scale(7);
-  stroke-dasharray: 9.0608rem;
-  stroke-dashoffset: 9.0608rem;
+  stroke-dasharray: 7.9282rem;
+  stroke-dashoffset: 7.9282rem;
   transition: stroke-dashoffset 0.4s;
   transition-delay: 0s;
   transition-timing-function: ease-in;
 }
 article[data-activity-type=core] > footer > span.spiral:nth-child(2) svg path {
-  stroke-dasharray: 3.8rem;
-  stroke-dashoffset: 3.8rem;
+  stroke-dasharray: 3.325rem;
+  stroke-dashoffset: 3.325rem;
   transition: stroke-dashoffset 0.8s;
   transition-delay: 0.4s;
   transition-timing-function: ease-out;
@@ -1627,8 +1594,8 @@ article[data-activity-type=core] > footer > span.spiral:nth-child(3) {
   transform: rotate(90deg) translate(4rem, -1.04rem);
 }
 article[data-activity-type=core] > footer > span.spiral:nth-child(3) svg {
-  width: 0.8rem;
-  height: 1.2944rem;
+  width: 0.7rem;
+  height: 1.1326rem;
   overflow: visible;
 }
 article[data-activity-type=core] > footer > span.spiral:nth-child(3) svg path, article[data-activity-type=core] > footer > span.spiral:nth-child(3) svg line {
@@ -1639,15 +1606,15 @@ article[data-activity-type=core] > footer > span.spiral:nth-child(3) svg path, a
 }
 article[data-activity-type=core] > footer > span.spiral:nth-child(3) svg line {
   transform: scale(5);
-  stroke-dasharray: 6.472rem;
-  stroke-dashoffset: 6.472rem;
+  stroke-dasharray: 5.663rem;
+  stroke-dashoffset: 5.663rem;
   transition: stroke-dashoffset 0.4s;
   transition-delay: 0s;
   transition-timing-function: ease-in;
 }
 article[data-activity-type=core] > footer > span.spiral:nth-child(3) svg path {
-  stroke-dasharray: 3.8rem;
-  stroke-dashoffset: 3.8rem;
+  stroke-dasharray: 3.325rem;
+  stroke-dashoffset: 3.325rem;
   transition: stroke-dashoffset 0.8s;
   transition-delay: 0.4s;
   transition-timing-function: ease-out;
@@ -1655,30 +1622,153 @@ article[data-activity-type=core] > footer > span.spiral:nth-child(3) svg path {
 article[data-activity-type=core] > footer small {
   display: none;
 }
+article[data-activity-category=education] h4 span.spiral:before, article[data-activity-category=education] h5 span.spiral:before, article[data-activity-category=education] footer span.spiral:before {
+  background: var(--accent2);
+}
+article[data-activity-type=root] h5 span:not(.spiral) {
+  margin: 5rem 0 0 4.8rem;
+}
+article[data-activity-type=root] h5 span.spiral {
+  margin-top: 4rem;
+  transform: none;
+}
+@media (min-width: 600px) {
+  article[data-activity-type=root] h5 span.spiral {
+    margin: 7rem 0 0 -1px;
+    transform: rotate(90deg);
+  }
+  article[data-activity-type=root] h5:after {
+    margin-top: 3rem;
+  }
+}
+article[data-activity-type=root] h4 {
+  margin-left: 0;
+}
+article[data-activity-type=root] h4 span.spiral {
+  margin: 0.3rem 0 0 -0.5rem;
+  transform: rotate(-90deg);
+}
+article[data-activity-type=root] h4 span.spiral:before {
+  top: -0.4rem;
+  left: 0.6rem;
+}
+article[data-activity-type=root] h4[data-state=in] span.spiral:before {
+  transform: scale(0.8);
+}
+@media (min-width: 600px) {
+  article[data-activity-type=root] footer span.spiral:nth-child(2) {
+    left: 0.7rem;
+    bottom: 0;
+    transform: rotate(90deg);
+  }
+  article[data-activity-type=root] footer span.spiral:nth-child(3) {
+    bottom: -1.5rem;
+    left: -0.35rem;
+    transform: rotate(-90deg);
+  }
+  article[data-activity-type=root] footer span.spiral:nth-child(3) svg {
+    width: 0.7rem;
+    height: 1.1326rem;
+    overflow: visible;
+  }
+  article[data-activity-type=root] footer span.spiral:nth-child(3) svg path, article[data-activity-type=root] footer span.spiral:nth-child(3) svg line {
+    stroke: var(--content);
+    stroke-width: 2px;
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+  article[data-activity-type=root] footer span.spiral:nth-child(3) svg line {
+    transform: scale(3);
+    stroke-dasharray: 3.3978rem;
+    stroke-dashoffset: 3.3978rem;
+    transition: stroke-dashoffset 0.4s;
+    transition-delay: 0s;
+    transition-timing-function: ease-in;
+  }
+  article[data-activity-type=root] footer span.spiral:nth-child(3) svg path {
+    stroke-dasharray: 3.325rem;
+    stroke-dashoffset: 3.325rem;
+    transition: stroke-dashoffset 0.8s;
+    transition-delay: 0.4s;
+    transition-timing-function: ease-out;
+  }
+  article[data-activity-type=root] footer span.spiral:nth-child(2) {
+    transform: rotate(-90deg) scaleY(-1);
+  }
+  article[data-activity-type=root] footer span.spiral:nth-child(3) {
+    bottom: -0.8rem;
+    left: -0.8rem;
+  }
+  article[data-activity-type=root] footer span.spiral svg {
+    width: 0.7rem;
+    height: 1.1326rem;
+    overflow: visible;
+  }
+  article[data-activity-type=root] footer span.spiral svg path, article[data-activity-type=root] footer span.spiral svg line {
+    stroke: var(--content);
+    stroke-width: 2px;
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+  article[data-activity-type=root] footer span.spiral svg line {
+    transform: scale(5);
+    stroke-dasharray: 5.663rem;
+    stroke-dashoffset: 5.663rem;
+    transition: stroke-dashoffset 0.4s;
+    transition-delay: 0s;
+    transition-timing-function: ease-in;
+  }
+  article[data-activity-type=root] footer span.spiral svg path {
+    stroke-dasharray: 3.325rem;
+    stroke-dashoffset: 3.325rem;
+    transition: stroke-dashoffset 0.8s;
+    transition-delay: 0.4s;
+    transition-timing-function: ease-out;
+  }
+  article[data-activity-type=root] footer span.spiral svg path {
+    transition-delay: 0s;
+  }
+}
+article[data-activity-type=root] > div {
+  min-height: 1rem;
+}
+article[data-activity-type=root] > div:before {
+  width: 100%;
+  top: auto;
+  height: 2px;
+  margin: 1rem 0 0 1rem;
+}
+@media (min-width: 600px) {
+  article[data-activity-type=root] > div:before {
+    display: none;
+  }
+}
+@media (min-width: 600px) {
+  article[data-activity-type=root][data-activity-id=els] footer span.spiral:nth-child(2) line {
+    display: none;
+  }
+}
 @media (min-width: 600px) {
   article[data-activity-type=branch] h5 span:not(.spiral), article[data-activity-type=contract] h5 span:not(.spiral) {
-    margin: 0;
+    margin: 0.4rem 0 0;
     white-space: nowrap;
-    transform: rotate(90deg) translate(2.6rem, 1.4rem);
+    transform: rotate(90deg) translateY(2.1rem);
     transform-origin: top left;
     font-size: 0.6rem;
   }
-  article[data-activity-type=branch] {
-    padding-left: 0.4rem;
-  }
   article[data-activity-type=branch] footer span.spiral:nth-child(2) {
-    left: 0.75rem;
+    left: 0.7rem;
     bottom: 0;
     transform: rotate(90deg);
   }
   article[data-activity-type=branch] footer span.spiral:nth-child(3) {
-    bottom: -1.6rem;
-    left: -0.4rem;
+    bottom: -1.5rem;
+    left: -0.35rem;
     transform: rotate(-90deg);
   }
   article[data-activity-type=branch] footer span.spiral:nth-child(3) svg {
-    width: 0.8rem;
-    height: 1.2944rem;
+    width: 0.7rem;
+    height: 1.1326rem;
     overflow: visible;
   }
   article[data-activity-type=branch] footer span.spiral:nth-child(3) svg path, article[data-activity-type=branch] footer span.spiral:nth-child(3) svg line {
@@ -1689,33 +1779,27 @@ article[data-activity-type=core] > footer small {
   }
   article[data-activity-type=branch] footer span.spiral:nth-child(3) svg line {
     transform: scale(3);
-    stroke-dasharray: 3.8832rem;
-    stroke-dashoffset: 3.8832rem;
+    stroke-dasharray: 3.3978rem;
+    stroke-dashoffset: 3.3978rem;
     transition: stroke-dashoffset 0.4s;
     transition-delay: 0s;
     transition-timing-function: ease-in;
   }
   article[data-activity-type=branch] footer span.spiral:nth-child(3) svg path {
-    stroke-dasharray: 3.8rem;
-    stroke-dashoffset: 3.8rem;
+    stroke-dasharray: 3.325rem;
+    stroke-dashoffset: 3.325rem;
     transition: stroke-dashoffset 0.8s;
     transition-delay: 0.4s;
     transition-timing-function: ease-out;
   }
   article[data-activity-type=branch][data-focus="-1"] {
     left: 0;
-    right: 80%;
-    padding-left: 0;
-    padding-right: 1rem;
   }
   article[data-activity-type=branch][data-focus="-1"] > * {
-    justify-self: flex-end;
+    width: calc(20vw - 1rem);
   }
   article[data-activity-type=branch][data-focus="-1"] h4 {
     margin-left: 0;
-    margin-right: 2.5rem;
-    text-align: right;
-    grid-template-columns: 1fr 4.3rem;
   }
   article[data-activity-type=branch][data-focus="-1"] h4 span.spiral {
     grid-column-start: 2;
@@ -1723,7 +1807,7 @@ article[data-activity-type=core] > footer small {
   article[data-activity-type=branch][data-focus="-1"] h5 {
     grid-template-columns: 1fr 1rem;
   }
-  article[data-activity-type=branch][data-focus="-1"] h5 span.spiral {
+  article[data-activity-type=branch][data-focus="-1"] h5 span {
     grid-column-start: 2;
   }
   article[data-activity-type=branch][data-focus="-1"] h5:before {
@@ -1734,19 +1818,9 @@ article[data-activity-type=core] > footer small {
     grid-column-start: 2;
     width: 0.2rem;
   }
-  article[data-activity-type=branch][data-focus="-1"] div {
-    width: calc(20vw - 1rem);
-  }
-  article[data-activity-type=branch][data-focus="-1"] div:before {
-    display: none;
-  }
-  article[data-activity-type=branch][data-focus="-1"] div figure:first-child {
-    width: calc(20vw - 2rem);
-  }
-  article[data-activity-type=branch][data-focus="-1"] div figure:first-child ul {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    text-align: right;
+  article[data-activity-type=branch][data-focus="-1"] > div:before {
+    right: calc(1.5rem - 1px);
+    left: auto;
   }
   article[data-activity-type=branch][data-focus="-1"] footer {
     grid-template-columns: 1fr 1rem;
@@ -1765,10 +1839,7 @@ article[data-activity-type=core] > footer small {
   }
 }
 @media (min-width: 600px) and (min-width: 1100px) {
-  article[data-activity-type=branch][data-focus="-1"] {
-    right: 70%;
-  }
-  article[data-activity-type=branch][data-focus="-1"] div {
+  article[data-activity-type=branch][data-focus="-1"] > * {
     width: calc(30vw - 1rem);
   }
   article[data-activity-type=branch][data-focus="-1"] div figure:first-child {
@@ -1776,38 +1847,52 @@ article[data-activity-type=core] > footer small {
   }
 }
 @media (min-width: 600px) {
-  article[data-activity-type=branch][data-focus="-1"] h4 span:not(.spiral) {
+  article[data-activity-type=branch][data-focus="-1"] > h4 {
+    grid-template-columns: 1fr 4.3rem 2.47rem;
+  }
+  article[data-activity-type=branch][data-focus="-1"] > h4 span:not(.spiral) {
     grid-column-start: 1;
-    grid-column-end: span 2;
+    grid-column-end: span 3;
     transform: translateY(2.6rem);
+    padding: 0 2rem 0 1rem;
   }
 }
 @media (min-width: 600px) and (min-width: 1100px) {
-  article[data-activity-type=branch][data-focus="-1"] h4 span:not(.spiral) {
-    transform: translate(-0.3rem, 2rem);
+  article[data-activity-type=branch][data-focus="-1"] > h4 span:not(.spiral) {
+    transform: translateY(2rem);
   }
 }
 @media (min-width: 600px) {
-  article[data-activity-type=branch][data-focus="-1"] h4 span.spiral {
+  article[data-activity-type=branch][data-focus="-1"] > h4 span.spiral {
     transform: scaleX(-1);
   }
 }
 @media (min-width: 600px) {
-  article[data-activity-type=branch][data-focus="-1"] h5 span:not(.spiral) {
-    transform: rotate(90deg) translate(2.5rem, -0.8rem);
+  article[data-activity-type=branch][data-focus="-1"] > h5 span:not(.spiral) {
+    transform: rotate(90deg) translateY(-0.8rem);
   }
-  article[data-activity-type=branch][data-focus="-1"] h5 span.spiral {
-    transform: rotate(-90deg) scaleY(-1) translate(-5.1rem, -0.1rem);
+  article[data-activity-type=branch][data-focus="-1"] > h5 span.spiral {
+    transform: rotate(-90deg) scaleY(-1);
+    margin-left: -0.5rem;
   }
 }
 @media (min-width: 600px) {
-  article[data-activity-type=branch][data-focus="-1"] footer span.spiral:nth-child(2) {
-    left: 0.1rem;
+  article[data-activity-type=branch][data-focus="-1"] > footer span.spiral:nth-child(2) {
+    left: -0.5rem;
+    transform: rotate(90deg) scaleY(-1);
   }
-  article[data-activity-type=branch][data-focus="-1"] footer span.spiral:nth-child(3) {
-    transform: rotate(-90deg);
-    left: -0.2rem;
-    bottom: -1.1rem;
+  article[data-activity-type=branch][data-focus="-1"] > footer span.spiral:nth-child(3) {
+    left: 0.5rem;
+  }
+}
+@media (min-width: 600px) {
+  article[data-activity-type=branch][data-focus="-1"] > div:after {
+    display: none;
+  }
+}
+@media (min-width: 600px) {
+  article[data-activity-type=branch][data-activity-id=ll] h5 span:not(.spiral), article[data-activity-type=branch][data-activity-id=pi] h5 span:not(.spiral) {
+    margin-top: 2.1rem;
   }
 }
 @media (min-width: 600px) {
@@ -1818,19 +1903,16 @@ article[data-activity-type=core] > footer small {
 }
 @media (min-width: 600px) {
   article[data-activity-type=contract] {
-    margin-left: -1rem;
+    margin-left: -0.7rem;
   }
-  article[data-activity-type=contract] h5 span.spiral {
-    transform: rotate(-90deg) translate(-5.8rem, 0.45rem);
-  }
-  article[data-activity-type=contract] div:before {
-    left: 0;
+  article[data-activity-type=contract] h5 span:not(.spiral) {
+    transform: rotate(90deg) translateY(2.4rem);
   }
   article[data-activity-type=contract] footer {
     margin-left: 0.3rem;
   }
-  article[data-activity-type=contract] footer small {
-    margin-left: 0.6rem;
+  article[data-activity-type=contract] footer span.spiral:nth-child(3) {
+    left: -0.4rem;
   }
 }
 @media (min-width: 600px) {
@@ -1843,83 +1925,6 @@ article[data-activity-type=core] > footer small {
   article[data-activity-type=projects] div:before {
     display: none;
   }
-}
-article[data-activity-type=root] h5 span:not(.spiral) {
-  margin-left: 5rem;
-}
-article[data-activity-type=root] h5 span:not(.spiral) strong {
-  display: none;
-}
-article[data-activity-type=root] h5 span.spiral {
-  position: absolute;
-  left: -1.5rem;
-  top: 5rem;
-  transform: rotate(90deg) translateY(-0.1rem);
-}
-article[data-activity-type=root] h4 {
-  margin-left: 0;
-}
-article[data-activity-type=root] h4 span.spiral {
-  transform: rotate(-90deg) translateY(-0.1rem);
-}
-article[data-activity-type=root] h4 span.spiral:before {
-  top: 0;
-  left: 0.2rem;
-}
-article[data-activity-type=root] h4[data-state=in] span.spiral:before {
-  transform: scale(0.8);
-}
-@media (min-width: 600px) {
-  article[data-activity-type=root] footer span.spiral:nth-child(2) {
-    left: 0.75rem;
-    bottom: 0;
-    transform: rotate(90deg);
-  }
-  article[data-activity-type=root] footer span.spiral:nth-child(3) {
-    bottom: -1.6rem;
-    left: -0.4rem;
-    transform: rotate(-90deg);
-  }
-  article[data-activity-type=root] footer span.spiral:nth-child(3) svg {
-    width: 0.8rem;
-    height: 1.2944rem;
-    overflow: visible;
-  }
-  article[data-activity-type=root] footer span.spiral:nth-child(3) svg path, article[data-activity-type=root] footer span.spiral:nth-child(3) svg line {
-    stroke: var(--content);
-    stroke-width: 2px;
-    fill: none;
-    vector-effect: non-scaling-stroke;
-  }
-  article[data-activity-type=root] footer span.spiral:nth-child(3) svg line {
-    transform: scale(3);
-    stroke-dasharray: 3.8832rem;
-    stroke-dashoffset: 3.8832rem;
-    transition: stroke-dashoffset 0.4s;
-    transition-delay: 0s;
-    transition-timing-function: ease-in;
-  }
-  article[data-activity-type=root] footer span.spiral:nth-child(3) svg path {
-    stroke-dasharray: 3.8rem;
-    stroke-dashoffset: 3.8rem;
-    transition: stroke-dashoffset 0.8s;
-    transition-delay: 0.4s;
-    transition-timing-function: ease-out;
-  }
-}
-article[data-activity-type=root] footer span.spiral:nth-child(2) {
-  left: -0.3rem;
-  transform: rotate(-90deg) scaleY(-1);
-}
-article[data-activity-type=root] footer span.spiral:nth-child(3) {
-  bottom: -0.8rem;
-  left: -0.2rem;
-}
-article[data-activity-type=root] footer span.spiral svg {
-  @inlcude spiral ($smallerSpiralWidth, $strokeWidth, -5, $footerSpiralDelay);
-}
-article[data-activity-type=root] footer span.spiral svg path {
-  transition-delay: 0s;
 }
 
 body > footer {

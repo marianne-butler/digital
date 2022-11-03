@@ -95,6 +95,16 @@ async function initCV() {
 
 	activities.querySelectorAll('footer').forEach((el) => ioFooter.observe(el));
 
+	const ioContent2 = new IntersectionObserver(
+		function(items) {
+			items.forEach(({target, isIntersecting}) => target.setAttribute("data-state", isIntersecting ? "in" : "out"));
+		}, 
+		{
+			root: mainContainer,
+	  		threshold: [0]
+		}
+	);
+
 	const ioContent = new IntersectionObserver(
 		function(items) {
 			items.forEach(function({target, isIntersecting}) {
@@ -102,7 +112,7 @@ async function initCV() {
 					target.querySelectorAll("[data-content-type=placeholder]").forEach(appendPlaceholder);
 					target.querySelectorAll("[data-content-type=png]").forEach(el => appendPng({el: el, name: target.getAttribute("data-content-id")}));
 					target.querySelectorAll("[data-content-type=poster]").forEach(function(el) {
-						appendPng({el: el, name: "poster_bg_l"});
+						//appendPng({el: el, name: "poster_bg_l"});
 						for (var i=0; i < el.getAttribute("data-image-count"); i++) {
 							const span = document.createElement("span");
 							appendPng({el: span, name: target.getAttribute("data-content-id")+i});
@@ -110,7 +120,7 @@ async function initCV() {
 						}
 					});
 					target.querySelectorAll("[data-content-type=website]").forEach(function(el) {
-						appendPng({el: el, name: "website_bg"});
+						//appendPng({el: el, name: "website_bg"});
 						for (var i=0; i < el.getAttribute("data-image-count"); i++) {
 							const span = document.createElement("span");
 							appendPng({el: span, name: target.getAttribute("data-content-id")+i});
@@ -119,6 +129,7 @@ async function initCV() {
 					});
 					target.setAttribute("data-state", "in");
 					ioContent.unobserve(target);
+					ioContent2.observe(target);
 				}
 			});
 		}, 
