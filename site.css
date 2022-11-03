@@ -1131,7 +1131,6 @@ article div figure > ul li {
   margin-bottom: 0.3rem;
 }
 article div figure > span {
-  background-color: white;
   grid-column-start: 1;
   grid-row-start: 1;
   background-size: contain;
@@ -1175,7 +1174,6 @@ article div figure > span[data-content-type=website] {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--accent-alt);
 }
 article div figure > span[data-content-type=website]:before {
   content: "";
