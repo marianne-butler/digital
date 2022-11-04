@@ -148,6 +148,7 @@ initCV();
 * toggle splash/scroll
 ***/
 const setSplash = (isSplash) => document.body.setAttribute("data-state", isSplash ? "splash" : "scroll"),
+setStart = (hasStarted) => document.body.setAttribute("data-state", hasStarted ? "start" : "splash"),
 scrollMain = ([top, left]) => mainContainer.scrollTo({top: top, left: left, /*behavior: 'smooth'*/});
 
 header.querySelector("[data-action=scroll]").addEventListener("click", () => setSplash(false));
@@ -157,7 +158,7 @@ header.querySelector("[data-action=splash]").addEventListener("click", function(
 });
 
 hamburger.addEventListener("toggle", function(event) {
-	const showContent = (document.body.getAttribute("data-state") === "splash");
+	const showContent = (document.body.getAttribute("data-state") !== "scroll");
 	if (hamburger.getAttribute("open") == null) {
 		if (showContent) hamburger.setAttribute("open", ""); // force it to open
 		else hamburger.querySelector("summary").blur(); // remove the focus
@@ -168,7 +169,13 @@ hamburger.addEventListener("toggle", function(event) {
 		setSplash(false); // do this last
 	}
 });
+
+new IntersectionObserver(
+	(items) => setStart(!items[0].isIntersecting), 
+	{ root: mainContainer, threshold: [0] }
+).observe(mainContainer.querySelector("#top"));
+
 new IntersectionObserver(
 	(items) => setSplash(items[0].isIntersecting), 
 	{ root: mainContainer, threshold: [0] }
-).observe(mainContainer.querySelector("#top"));
+).observe(mainContainer.querySelector("#buffer"));

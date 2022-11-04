@@ -115,18 +115,18 @@ header {
   max-height: 3rem;
   transition: all 0.45s ease-out;
 }
-[data-state=splash] header {
+[data-state=splash] header, [data-state=start] header {
   max-height: 12rem;
   height: 12rem;
   padding: 10vw 10vw 0;
 }
 @media (min-width: 900px) {
-  [data-state=splash] header {
+  [data-state=splash] header, [data-state=start] header {
     padding: 21vh 15vw 0;
   }
 }
 @media (min-width: 1100px) {
-  [data-state=splash] header {
+  [data-state=splash] header, [data-state=start] header {
     padding: 21vh 20vw 0;
   }
 }
@@ -193,13 +193,13 @@ header h1 > *:last-child > strong {
   color: var(--content);
   transition: all 0.2s;
 }
-[data-state=splash] header h1 > *:last-child > strong {
+[data-state=splash] header h1 > *:last-child > strong, [data-state=start] header h1 > *:last-child > strong {
   letter-spacing: -0.2rem;
   font-size: 300%;
   justify-self: center;
   text-shadow: -0.2rem 0.2rem 0 var(--background);
 }
-[data-state=splash] header h1 > *:last-child span {
+[data-state=splash] header h1 > *:last-child span, [data-state=start] header h1 > *:last-child span {
   opacity: 1;
 }
 @media (min-width: 600px) {
@@ -228,7 +228,7 @@ header h1 > *:last-child > strong {
     grid-column-end: span 2;
     grid-row-start: 2;
   }
-  [data-state=splash] header h1 > *:last-child > strong {
+  [data-state=splash] header h1 > *:last-child > strong, [data-state=start] header h1 > *:last-child > strong {
     font-size: 300%;
   }
 }
@@ -255,7 +255,7 @@ header p:before {
   width: 0;
   transition: width 0.45s;
 }
-[data-state=splash] header p:before {
+[data-state=splash] header p:before, [data-state=start] header p:before {
   width: 19vw;
 }
 header p:after {
@@ -264,7 +264,7 @@ header p:after {
   width: 100vw;
   transition: left 0.45s;
 }
-[data-state=splash] header p:after {
+[data-state=splash] header p:after, [data-state=start] header p:after {
   left: calc(100% - 2.6rem);
 }
 header p > span {
@@ -277,22 +277,22 @@ header p > span {
 [data-state=scroll] header p > span {
   transform: translateX(-100vw);
 }
-[data-state=splash] header p > span:first-child {
+[data-state=splash] header p > span:first-child, [data-state=start] header p > span:first-child {
   grid-row-start: 1;
   transform: translateX(0.1rem);
 }
-[data-state=splash] header p > span:first-child strong {
+[data-state=splash] header p > span:first-child strong, [data-state=start] header p > span:first-child strong {
   font-variation-settings: "wght" 380;
 }
-[data-state=splash] header p > span:first-child strong:first-child {
+[data-state=splash] header p > span:first-child strong:first-child, [data-state=start] header p > span:first-child strong:first-child {
   font-variation-settings: "wght" 300;
 }
-[data-state=splash] header p > span:first-child .punctuation {
+[data-state=splash] header p > span:first-child .punctuation, [data-state=start] header p > span:first-child .punctuation {
   margin-right: -0.1rem;
   opacity: 0.8;
   z-index: 0;
 }
-[data-state=splash] header p > span.punctuation {
+[data-state=splash] header p > span.punctuation, [data-state=start] header p > span.punctuation {
   grid-row-start: 2;
   text-align: right;
   transform: translate(-0.7rem, -4.2rem);
@@ -333,7 +333,7 @@ menu {
   pointer-events: none;
   transition: all 0.45s;
 }
-[data-state=splash] menu {
+[data-state=splash] menu, [data-state=start] menu {
   top: 10vw;
   padding-top: 12rem;
   width: 15rem;
@@ -341,31 +341,20 @@ menu {
   right: 10vw;
   grid-template-rows: 7rem max-content max-content;
 }
-[data-state=splash] menu:before {
-  grid-row-start: 1;
-  grid-row-end: span 3;
-  grid-column-start: 1;
-  content: "";
-  align-self: stretch;
-  background: var(--background-trans);
-}
 @media (min-width: 600px) {
-  [data-state=splash] menu {
+  [data-state=splash] menu, [data-state=start] menu {
     width: 20rem;
-  }
-  [data-state=splash] menu:before {
-    background: linear-gradient(transparent 10%, var(--background-trans) 40%, var(--background-trans) 90%, transparent 100%);
   }
 }
 @media (min-width: 900px) {
-  [data-state=splash] menu {
+  [data-state=splash] menu, [data-state=start] menu {
     top: 21vh;
     right: 15vw;
     grid-template-columns: max-content 1fr;
   }
 }
 @media (min-width: 1100px) {
-  [data-state=splash] menu {
+  [data-state=splash] menu, [data-state=start] menu {
     right: 20vw;
   }
 }
@@ -444,12 +433,12 @@ menu button[data-action=contact]:hover span, menu button[data-action=contact]:fo
 [data-state=scroll] menu button[data-action=contact] {
   margin-right: 2rem;
 }
-[data-state=splash] menu button[data-action=contact] {
+[data-state=splash] menu button[data-action=contact], [data-state=start] menu button[data-action=contact] {
   padding: 0 1rem 0 2rem;
   transform: translateY(-50%);
   border-right: 0.3rem solid var(--background-alt);
 }
-[data-state=splash] menu button[data-action=contact]:before {
+[data-state=splash] menu button[data-action=contact]:before, [data-state=start] menu button[data-action=contact]:before {
   border-top: 0.3rem solid var(--background-alt);
   border-left: 0.3rem solid var(--background-alt);
   border-right: 0.3rem solid var(--accent);
@@ -468,13 +457,13 @@ menu button[data-action=scroll] {
   opacity: 0;
   transition: opacity 0.45s 0.9s;
 }
-[data-state=splash] menu button[data-action=scroll] {
+[data-state=splash] menu button[data-action=scroll], [data-state=start] menu button[data-action=scroll] {
   opacity: 1;
   pointer-events: all;
   grid-row-start: 3;
 }
 @media (min-width: 600px) {
-  [data-state=splash] menu button[data-action=scroll] {
+  [data-state=splash] menu button[data-action=scroll], [data-state=start] menu button[data-action=scroll] {
     grid-row-start: 3;
   }
 }
@@ -485,7 +474,11 @@ menu button[data-action=scroll] span {
   grid-column-start: 1;
   grid-row-start: 1;
   text-align: right;
-  transition: font-variation-settings 0.15s;
+  transition: opacity 1s;
+  opacity: 1;
+}
+[data-state=start] menu button[data-action=scroll] span {
+  opacity: 0;
 }
 menu button[data-action=scroll]:before, menu button[data-action=scroll]:after {
   font-family: "Bodoni Moda";
@@ -565,6 +558,8 @@ menu details ul {
 menu details.hamburger {
   position: relative;
   z-index: 0;
+  transform: translateY(0);
+  transition: transform 1s;
 }
 menu details.hamburger:before {
   content: "";
@@ -611,7 +606,7 @@ menu details.hamburger:before {
   opacity: 1;
   transition: opacity 0.45s;
 }
-[data-state=splash] [data-state=scroll] menu details.hamburger > details {
+[data-state=splash] [data-state=scroll] menu details.hamburger > details, [data-state=start] [data-state=scroll] menu details.hamburger > details {
   opacity: 0;
   display: none;
 }
@@ -621,14 +616,17 @@ menu details.hamburger:before {
 [data-state=scroll] menu details.hamburger > details[open] summary:before {
   transform: rotate(90deg) translate(0.2rem, 0.2rem);
 }
-[data-state=splash] menu details.hamburger {
+[data-state=splash] menu details.hamburger, [data-state=start] menu details.hamburger {
   grid-row-start: 2;
 }
-[data-state=splash] menu details.hamburger > summary h3 {
+[data-state=splash] menu details.hamburger > summary h3, [data-state=start] menu details.hamburger > summary h3 {
   display: none;
 }
-[data-state=splash] menu details.hamburger > details {
+[data-state=splash] menu details.hamburger > details, [data-state=start] menu details.hamburger > details {
   display: none;
+}
+[data-state=start] menu details.hamburger {
+  transform: translateY(-20rem);
 }
 
 main {
@@ -642,12 +640,12 @@ main {
 main > * {
   pointer-events: none;
 }
-[data-state=splash] main {
+[data-state=splash] main, [data-state=start] main {
   margin-top: 12rem;
   padding-top: 10vw;
 }
 @media (min-width: 900px) {
-  [data-state=splash] main {
+  [data-state=splash] main, [data-state=start] main {
     padding-top: 21vh;
   }
 }
@@ -675,11 +673,15 @@ main > * {
     transform: translateY(-21vh);
   }
 }
-main #top {
+main #top,
+main #buffer {
   grid-row-start: 1;
   grid-column-start: 1;
   width: 100%;
   pointer-events: none;
+}
+main #top {
+  height: 1px;
 }
 main h2 {
   height: 0;
@@ -691,6 +693,7 @@ main h2 {
   align-self: flex-end;
   justify-content: flex-end;
   align-items: center;
+  padding-right: 1rem;
   transform-origin: right;
   transition: transform 0.45s;
 }
@@ -726,23 +729,23 @@ main h2 span:last-child {
     bottom: 1.2rem;
   }
 }
-[data-state=splash] main h2 {
+[data-state=splash] main h2, [data-state=start] main h2 {
   margin-left: auto;
   margin-right: 10vw;
   transform: scale(1.5);
 }
 @media (min-width: 600px) {
-  [data-state=splash] main h2 {
+  [data-state=splash] main h2, [data-state=start] main h2 {
     transform: scale(2);
   }
 }
 @media (min-width: 900px) {
-  [data-state=splash] main h2 {
+  [data-state=splash] main h2, [data-state=start] main h2 {
     margin-right: 15vw;
   }
 }
 @media (min-width: 1100px) {
-  [data-state=splash] main h2 {
+  [data-state=splash] main h2, [data-state=start] main h2 {
     margin-right: 20vw;
   }
 }
@@ -829,15 +832,15 @@ main ol {
     height: 1px;
     opacity: 0.2;
   }
-  [data-state=splash] main ol li:first-child {
+  [data-state=splash] main ol li:first-child, [data-state=start] main ol li:first-child {
     position: sticky;
     top: 16rem;
     z-index: 100;
   }
-  [data-state=splash] main ol li:first-child:before {
+  [data-state=splash] main ol li:first-child:before, [data-state=start] main ol li:first-child:before {
     display: none;
   }
-  [data-state=splash] main ol li:first-child:after {
+  [data-state=splash] main ol li:first-child:after, [data-state=start] main ol li:first-child:after {
     transform: translateY(-13.7rem);
     margin-right: 10vw;
     font-family: "Josefin Sans";
@@ -847,12 +850,12 @@ main ol {
   }
 }
 @media (min-width: 600px) and (min-width: 900px) {
-  [data-state=splash] main ol li:first-child:after {
+  [data-state=splash] main ol li:first-child:after, [data-state=start] main ol li:first-child:after {
     margin-right: 15vw;
   }
 }
 @media (min-width: 600px) and (min-width: 1100px) {
-  [data-state=splash] main ol li:first-child:after {
+  [data-state=splash] main ol li:first-child:after, [data-state=start] main ol li:first-child:after {
     margin-right: 20vw;
   }
 }
