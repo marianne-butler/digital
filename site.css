@@ -130,26 +130,28 @@ header {
     padding: 21vh 20vw 0;
   }
 }
-header h1, header p {
+header > h1,
+header > p {
   display: grid;
   font-size: 1rem;
   grid-template-rows: repeat(2, max-content);
   grid-template-columns: 100%;
 }
 @media (min-width: 600px) {
-  header h1, header p {
+  header > h1,
+header > p {
     grid-template-columns: 21rem;
     font-size: 1.36rem;
   }
 }
-header h1 {
+header > h1 {
   transform: scale(1);
   transition: transform 0.45s 0.45s;
 }
-[data-state=scroll] header h1 {
+[data-state=scroll] header > h1 {
   transform: scale(0);
 }
-header h1 > *:first-child {
+header > h1 > *:first-child {
   grid-column-start: 1;
   grid-row-start: 1;
   font-size: 110%;
@@ -157,11 +159,11 @@ header h1 > *:first-child {
   transform: translate(0, -3rem);
 }
 @media (min-width: 600px) {
-  header h1 > *:first-child {
+  header > h1 > *:first-child {
     transform: translate(-2vw, -2vw);
   }
 }
-header h1 > *:last-child {
+header > h1 > *:last-child {
   grid-column-start: 1;
   grid-row-start: 2;
   display: grid;
@@ -171,16 +173,16 @@ header h1 > *:last-child {
   grid-template-rows: 100%;
   position: relative;
 }
-header h1 > *:last-child > span {
+header > h1 > *:last-child > span {
   position: relative;
   grid-column-start: 1;
   grid-row-start: 1;
   transform: translate(5rem, -3.2rem);
 }
-header h1 > *:last-child > span.punctuation {
+header > h1 > *:last-child > span.punctuation {
   display: none;
 }
-header h1 > *:last-child > strong {
+header > h1 > *:last-child > strong {
   z-index: 10;
   grid-column-start: 1;
   grid-row-start: 1;
@@ -193,26 +195,26 @@ header h1 > *:last-child > strong {
   color: var(--content);
   transition: all 0.2s;
 }
-[data-state=splash] header h1 > *:last-child > strong, [data-state=start] header h1 > *:last-child > strong {
+[data-state=splash] header > h1 > *:last-child > strong, [data-state=start] header > h1 > *:last-child > strong {
   letter-spacing: -0.2rem;
   font-size: 300%;
   justify-self: center;
   text-shadow: -0.2rem 0.2rem 0 var(--background);
 }
-[data-state=splash] header h1 > *:last-child span, [data-state=start] header h1 > *:last-child span {
+[data-state=splash] header > h1 > *:last-child span, [data-state=start] header > h1 > *:last-child span {
   opacity: 1;
 }
 @media (min-width: 600px) {
-  header h1 > *:last-child {
+  header > h1 > *:last-child {
     grid-template-rows: max-content max-content;
     grid-template-columns: 40% 1fr 1rem;
   }
-  header h1 > *:last-child > span {
+  header > h1 > *:last-child > span {
     text-align: left;
     grid-column-start: 2;
     transform: none;
   }
-  header h1 > *:last-child > span.punctuation {
+  header > h1 > *:last-child > span.punctuation {
     grid-column-start: 3;
     grid-row-start: 2;
     text-align: right;
@@ -224,75 +226,75 @@ header h1 > *:last-child > strong {
     right: -0.5rem;
     z-index: 0;
   }
-  header h1 > *:last-child > strong {
+  header > h1 > *:last-child > strong {
     grid-column-end: span 2;
     grid-row-start: 2;
   }
-  [data-state=splash] header h1 > *:last-child > strong, [data-state=start] header h1 > *:last-child > strong {
+  [data-state=splash] header > h1 > *:last-child > strong, [data-state=start] header > h1 > *:last-child > strong {
     font-size: 300%;
   }
 }
-header p {
+header > p {
   margin: 0 0 1rem 0;
   grid-row-gap: 0.6rem;
   position: relative;
   transition: opacity 0.2s;
 }
 @media (min-width: 600px) {
-  header p {
+  header > p {
     margin: 0.2rem 0 0 0;
   }
 }
-header p:before, header p:after {
+header > p:before, header > p:after {
   content: "";
   position: absolute;
   height: 1px;
   background: var(--content);
 }
-header p:before {
+header > p:before {
   left: -20vw;
   top: 1rem;
   width: 0;
   transition: width 0.45s;
 }
-[data-state=splash] header p:before, [data-state=start] header p:before {
+[data-state=splash] header > p:before, [data-state=start] header > p:before {
   width: 19vw;
 }
-header p:after {
+header > p:after {
   left: 100vw;
   bottom: -0.1rem;
   width: 100vw;
   transition: left 0.45s;
 }
-[data-state=splash] header p:after, [data-state=start] header p:after {
+[data-state=splash] header > p:after, [data-state=start] header > p:after {
   left: calc(100% - 2.6rem);
 }
-header p > span {
+header > p > span {
   grid-column-start: 1;
   position: relative;
   z-index: 1;
   transform: translateX(0);
   transition: transform 0.45s;
 }
-[data-state=scroll] header p > span {
+[data-state=scroll] header > p > span {
   transform: translateX(-100vw);
 }
-[data-state=splash] header p > span:first-child, [data-state=start] header p > span:first-child {
+[data-state=splash] header > p > span:first-child, [data-state=start] header > p > span:first-child {
   grid-row-start: 1;
   transform: translateX(0.1rem);
 }
-[data-state=splash] header p > span:first-child strong, [data-state=start] header p > span:first-child strong {
+[data-state=splash] header > p > span:first-child strong, [data-state=start] header > p > span:first-child strong {
   font-variation-settings: "wght" 380;
 }
-[data-state=splash] header p > span:first-child strong:first-child, [data-state=start] header p > span:first-child strong:first-child {
+[data-state=splash] header > p > span:first-child strong:first-child, [data-state=start] header > p > span:first-child strong:first-child {
   font-variation-settings: "wght" 300;
 }
-[data-state=splash] header p > span:first-child .punctuation, [data-state=start] header p > span:first-child .punctuation {
+[data-state=splash] header > p > span:first-child .punctuation, [data-state=start] header > p > span:first-child .punctuation {
   margin-right: -0.1rem;
   opacity: 0.8;
   z-index: 0;
 }
-[data-state=splash] header p > span.punctuation, [data-state=start] header p > span.punctuation {
+[data-state=splash] header > p > span.punctuation, [data-state=start] header > p > span.punctuation {
   grid-row-start: 2;
   text-align: right;
   transform: translate(-0.7rem, -4.2rem);
@@ -301,7 +303,7 @@ header p > span {
   z-index: 0;
   color: var(--background);
 }
-header p > time {
+header > p > time {
   grid-column-start: 1;
   grid-row-start: 2;
   margin-right: 1rem;
@@ -311,11 +313,11 @@ header p > time {
   transform: translateX(0);
   transition: transform 0.45s;
 }
-[data-state=scroll] header p > time {
+[data-state=scroll] header > p > time {
   transform: translateX(100vw);
 }
 @media (min-width: 600px) {
-  header p > time {
+  header > p > time {
     text-align: right;
   }
 }
@@ -549,9 +551,6 @@ menu details summary:hover h2 > strong, menu details summary:focus h2 > strong {
 menu details summary:hover h3 > strong, menu details summary:focus h3 > strong {
   font-variation-settings: "wght" 350;
 }
-menu details ul {
-  height: 10rem;
-}
 [data-state=scroll] menu details {
   justify-self: flex-start;
 }
@@ -570,20 +569,11 @@ menu details.hamburger:before {
   bottom: 0;
   z-index: 0;
   background: transparent;
-  transition: background 0;
-  transition-delay: 0.45s;
+  transition: opacity 0.15s;
 }
 [data-state=scroll] menu details.hamburger {
   padding: 0 2rem;
   justify-self: stretch;
-}
-[data-state=scroll] menu details.hamburger:before {
-  background: var(--background-trans-mini);
-}
-@media (min-width: 600px) {
-  [data-state=scroll] menu details.hamburger:before {
-    background: var(--background-trans);
-  }
 }
 [data-state=scroll] menu details.hamburger > summary:before, [data-state=scroll] menu details.hamburger > summary h2 {
   display: none;
@@ -603,18 +593,119 @@ menu details.hamburger:before {
 [data-state=scroll] menu details.hamburger > details {
   position: relative;
   z-index: 1;
-  opacity: 1;
-  transition: opacity 0.45s;
-}
-[data-state=splash] [data-state=scroll] menu details.hamburger > details, [data-state=start] [data-state=scroll] menu details.hamburger > details {
-  opacity: 0;
-  display: none;
+  margin: 0.3rem 0;
 }
 [data-state=scroll] menu details.hamburger > details[open] {
+  padding: 1rem 0;
   width: calc(100vw - 4rem);
+  background: var(--background-alt);
+  border-bottom: 1px solid var(--light);
+  border-top: 1px solid var(--light);
 }
 [data-state=scroll] menu details.hamburger > details[open] summary:before {
   transform: rotate(90deg) translate(0.2rem, 0.2rem);
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  grid-column-gap: 1rem;
+  padding: 1rem 0;
+  overflow-x: auto;
+}
+@media (min-width: 900px) {
+  [data-state=scroll] menu details.hamburger > details:not(:last-child) > ul {
+    grid-column-gap: 2rem;
+  }
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul > li {
+  padding-left: 1.2rem;
+  align-self: flex-start;
+  position: relative;
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul > li:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0.3rem;
+  bottom: 0;
+  width: 0.6rem;
+  border-left: 1px solid var(--light);
+  border-top: 1px solid var(--light);
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul > li h4 {
+  text-transform: uppercase;
+  max-width: 13rem;
+  line-height: 1.3;
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul > li p {
+  font-size: 1rem;
+  max-width: 18rem;
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul > li ul {
+  margin: 0.6rem 0 1.6rem;
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul > li ul:last-child {
+  margin-bottom: 0;
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul > li ul li {
+  margin-bottom: 0.6rem;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-template-rows: repeat(2, max-content);
+  grid-column-gap: 0.9rem;
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul > li ul li strong {
+  font-variation-settings: "wght" 500;
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul > li ul li span {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+[data-state=scroll] menu details.hamburger > details:not(:last-child) > ul > li ul li p {
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+}
+[data-state=scroll] menu details.hamburger > details:last-child {
+  border-bottom: none !important;
+}
+[data-state=scroll] menu details.hamburger > details:last-child > ul > li {
+  margin-top: 0.9rem;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: repeat(2, max-content);
+  grid-column-gap: 0.3rem;
+  grid-row-gap: 0.3rem;
+}
+[data-state=scroll] menu details.hamburger > details:last-child > ul > li strong {
+  font-variation-settings: "wght" 500;
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+[data-state=scroll] menu details.hamburger > details:last-child > ul > li span {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+[data-state=scroll] menu details.hamburger > details:last-child > ul > li p {
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+}
+[data-state=scroll] menu details.hamburger[open] {
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-bottom: 1px solid var(--light);
+}
+[data-state=scroll] menu details.hamburger[open]:before {
+  background: var(--background-trans-mini);
+}
+@media (min-width: 600px) {
+  [data-state=scroll] menu details.hamburger[open]:before {
+    background: var(--background-trans);
+  }
 }
 [data-state=splash] menu details.hamburger, [data-state=start] menu details.hamburger {
   grid-row-start: 2;
