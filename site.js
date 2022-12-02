@@ -48,7 +48,7 @@ async function setupHtml() {
 			fromMonth: act.getAttribute("data-start-month"),
 		});
 		act.style.top = `${activityTop * monthPercentage}%`;
-		act.style.minHeight = `${activityLength * monthPercentage}%`;
+		act.style.height = `${activityLength * monthPercentage}%`;
 		const foot = document.createElement("footer");
 		foot.innerHTML = `<small>${act.querySelector("h5").innerHTML}</small>`;
 		act.appendChild(foot);
@@ -111,8 +111,7 @@ async function initCV() {
 				if (isIntersecting) {
 					target.querySelectorAll("[data-content-type=placeholder]").forEach(appendPlaceholder);
 					target.querySelectorAll("[data-content-type=png]").forEach(el => appendPng({el: el, name: target.getAttribute("data-content-id")}));
-					target.querySelectorAll("[data-content-type=poster]").forEach(function(el) {
-						//appendPng({el: el, name: "poster_bg_l"});
+					target.querySelectorAll("[data-content-type=group]").forEach(function(el) {
 						for (var i=0; i < el.getAttribute("data-image-count"); i++) {
 							const span = document.createElement("span");
 							appendPng({el: span, name: target.getAttribute("data-content-id")+i});
@@ -154,6 +153,7 @@ scrollMain = ([top, left]) => mainContainer.scrollTo({top: top, left: left, /*be
 header.querySelector("[data-action=scroll]").addEventListener("click", () => setSplash(false));
 header.querySelector("[data-action=splash]").addEventListener("click", function() {
 	setSplash(true);
+	hamburger.removAttribute("open"); 
 	scrollMain([0,0]);
 });
 
