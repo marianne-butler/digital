@@ -1675,7 +1675,7 @@ article[data-activity-type=core] h4 {
   margin-left: 0;
 }
 article[data-activity-type=core] h4 .spiral {
-  transform: rotate(-90deg) translate(2.6rem, calc(1rem + 0.7px));
+  transform: rotate(-90deg) translate(2.6rem, 1.05rem);
 }
 article[data-activity-type=core] h4 .spiral:before {
   left: 2rem;
@@ -1684,16 +1684,10 @@ article[data-activity-type=core] h4[data-state=in] .spiral:before {
   transform: scale(2);
 }
 article[data-activity-type=core] h5 .spiral {
-  transform: rotate(-90deg) scaleY(-1) translate(3rem, calc(-0.45rem));
+  transform: rotate(-90deg) translate(3rem, 0.45rem);
 }
 article[data-activity-type=core] h5:after {
   margin-top: 8rem;
-}
-@media (min-width: 600px) {
-  article[data-activity-type=core] h5:after {
-    margin-top: 0;
-    width: 0.3rem;
-  }
 }
 article[data-activity-type=core] > footer {
   grid-row-start: 1;
@@ -1728,7 +1722,7 @@ article[data-activity-type=core] > footer > span.spiral:nth-child(2) svg path {
   transition-timing-function: ease-out;
 }
 article[data-activity-type=core] > footer > span.spiral:nth-child(3) {
-  transform: rotate(90deg) translate(4rem, -1.04rem);
+  transform: rotate(90deg) translate(4rem, -1.05rem);
 }
 article[data-activity-type=core] > footer > span.spiral:nth-child(3) svg {
   width: 0.7rem;
@@ -1771,12 +1765,11 @@ article[data-activity-type=core] > footer small {
   }
   article[data-activity-type=core] h4 span.spiral {
     grid-column-start: 2;
-    transform: rotate(-90deg) scaleY(-1);
-    margin: -2rem 0rem 0rem calc(-5.3rem);
+    transform: rotate(-90deg) scaleY(-1) translate(3rem, 2.65rem);
   }
   article[data-activity-type=core] h4 span.spiral:before {
-    top: -3rem;
-    left: 1rem;
+    top: -1.6rem;
+    left: 0;
   }
   article[data-activity-type=core] h5 {
     width: 30vw;
@@ -1785,9 +1778,10 @@ article[data-activity-type=core] > footer small {
   article[data-activity-type=core] h5:after {
     grid-column-start: 2;
     width: 0.2rem;
+    margin-top: 0;
   }
   article[data-activity-type=core] h5 span.spiral {
-    transform: rotate(-90deg) translate(3.3rem, 0.7rem);
+    transform: rotate(-90deg) translate(3.7rem, 0.7rem);
   }
   article[data-activity-type=core] footer {
     width: calc(30vw);
