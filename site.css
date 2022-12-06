@@ -719,6 +719,11 @@ menu details.hamburger:before {
 [data-state=start] menu details.hamburger {
   transform: translateY(-20rem);
 }
+@media (min-width: 1100px) {
+  menu details {
+    font-size: 0.8rem;
+  }
+}
 
 main {
   flex: 1;
