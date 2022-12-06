@@ -353,7 +353,6 @@ menu {
   [data-state=splash] menu, [data-state=start] menu {
     top: 21vh;
     right: 15vw;
-    grid-template-columns: max-content 1fr;
   }
 }
 @media (min-width: 1100px) {
