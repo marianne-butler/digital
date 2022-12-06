@@ -1811,7 +1811,7 @@ article[data-activity-type=root] h5 span.spiral {
 }
 @media (min-width: 600px) {
   article[data-activity-type=root] h5 span.spiral {
-    transform: translate(-0.6rem, -0.5rem) rotate(-90deg) scaleY(-1);
+    transform: translate(-0.6rem, -0.7rem) rotate(-90deg) scaleY(-1);
   }
   article[data-activity-type=root] h5 span:not(.spiral) {
     margin: 4.8rem 0 0 5.3rem;
@@ -1819,6 +1819,7 @@ article[data-activity-type=root] h5 span.spiral {
   article[data-activity-type=root] h5:after {
     margin-top: 3rem;
     margin-bottom: 2rem;
+    width: 0.15rem;
   }
 }
 article[data-activity-type=root] h4 {
@@ -1878,6 +1879,7 @@ article[data-activity-type=root] h4[data-state=in] span.spiral:before {
     transition-timing-function: ease-out;
   }
   article[data-activity-type=root] footer span.spiral:nth-child(2) {
+    bottom: -1px;
     transform: rotate(-90deg) scaleY(-1);
   }
   article[data-activity-type=root] footer span.spiral:nth-child(3) {
@@ -2078,8 +2080,8 @@ article[data-activity-type=root] > div figure {
   }
   article[data-activity-type=contract] footer small {
     padding-right: 1.6rem;
-    text-align: right;
     grid-column-start: 1;
+    justify-self: flex-end;
   }
   article[data-activity-type=contract] footer span.spiral {
     grid-column-start: 2;
@@ -2171,8 +2173,8 @@ article[data-activity-type=root] > div figure {
   }
   article[data-activity-type=projects] footer small {
     padding-right: 1.6rem;
-    text-align: right;
     grid-column-start: 1;
+    justify-self: flex-end;
   }
   article[data-activity-type=projects] footer span.spiral {
     grid-column-start: 2;
