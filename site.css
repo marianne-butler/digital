@@ -720,7 +720,7 @@ menu details.hamburger:before {
   transform: translateY(-20rem);
 }
 @media (min-width: 1100px) {
-  menu details {
+  menu details ul {
     font-size: 0.8rem;
   }
 }
